@@ -13,7 +13,7 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 # Usage
 
 - Under 'Clone or Download', Download and extract this Git and run 'MathsQuestionGenerator.sln' with Visual Studio.
-- Alternativelyu nder 'Clone or Download', press 'Open in Visual Studio'.
+- Alternatively, under 'Clone or Download' press 'Open in Visual Studio'.
 
 //TODO - Complete this section.
 
