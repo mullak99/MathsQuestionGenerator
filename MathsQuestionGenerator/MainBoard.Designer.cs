@@ -250,8 +250,8 @@
             this.debugConsoleToolStripMenuItem,
             this.answersToolStripMenuItem,
             this.answerAllToolStripMenuItem,
-            this.crashToolStripMenuItem,
-            this.silenceLogsToolStripMenuItem});
+            this.silenceLogsToolStripMenuItem,
+            this.crashToolStripMenuItem});
             this.developerToolStripMenuItem.Name = "developerToolStripMenuItem";
             this.developerToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.developerToolStripMenuItem.Text = "Developer";
