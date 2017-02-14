@@ -50,6 +50,8 @@
             this.debugConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.answersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.answerAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.difficultiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submitButton = new System.Windows.Forms.Button();
             this.questionBox2 = new System.Windows.Forms.GroupBox();
             this.answer2 = new System.Windows.Forms.Label();
@@ -82,9 +84,8 @@
             this.timeProgress = new System.Windows.Forms.ProgressBar();
             this.quizTimeLeft = new System.Windows.Forms.Timer(this.components);
             this.infoText = new System.Windows.Forms.Label();
-            this.crashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.difficultiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugEvents = new System.Windows.Forms.Timer(this.components);
+            this.silenceLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questionBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.questionBox2.SuspendLayout();
@@ -192,7 +193,7 @@
             this.extremeToolStripMenuItem,
             this.customToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // easyToolStripMenuItem
@@ -233,13 +234,13 @@
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -249,7 +250,8 @@
             this.debugConsoleToolStripMenuItem,
             this.answersToolStripMenuItem,
             this.answerAllToolStripMenuItem,
-            this.crashToolStripMenuItem});
+            this.crashToolStripMenuItem,
+            this.silenceLogsToolStripMenuItem});
             this.developerToolStripMenuItem.Name = "developerToolStripMenuItem";
             this.developerToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.developerToolStripMenuItem.Text = "Developer";
@@ -275,6 +277,21 @@
             this.answerAllToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.answerAllToolStripMenuItem.Text = "Answer All";
             this.answerAllToolStripMenuItem.Click += new System.EventHandler(this.answerAllToolStripMenuItem_Click);
+            // 
+            // crashToolStripMenuItem
+            // 
+            this.crashToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.difficultiesToolStripMenuItem});
+            this.crashToolStripMenuItem.Name = "crashToolStripMenuItem";
+            this.crashToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.crashToolStripMenuItem.Text = "Crash";
+            // 
+            // difficultiesToolStripMenuItem
+            // 
+            this.difficultiesToolStripMenuItem.Name = "difficultiesToolStripMenuItem";
+            this.difficultiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.difficultiesToolStripMenuItem.Text = "Difficulty Limit";
+            this.difficultiesToolStripMenuItem.Click += new System.EventHandler(this.difficultiesToolStripMenuItem_Click);
             // 
             // submitButton
             // 
@@ -636,25 +653,17 @@
             this.infoText.Text = "Press \'Start\' to begin.";
             this.infoText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // crashToolStripMenuItem
-            // 
-            this.crashToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.difficultiesToolStripMenuItem});
-            this.crashToolStripMenuItem.Name = "crashToolStripMenuItem";
-            this.crashToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.crashToolStripMenuItem.Text = "Crash";
-            // 
-            // difficultiesToolStripMenuItem
-            // 
-            this.difficultiesToolStripMenuItem.Name = "difficultiesToolStripMenuItem";
-            this.difficultiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.difficultiesToolStripMenuItem.Text = "Difficulty Limit";
-            this.difficultiesToolStripMenuItem.Click += new System.EventHandler(this.difficultiesToolStripMenuItem_Click);
-            // 
             // debugEvents
             // 
             this.debugEvents.Interval = 1;
             this.debugEvents.Tick += new System.EventHandler(this.debugEvents_Tick);
+            // 
+            // silenceLogsToolStripMenuItem
+            // 
+            this.silenceLogsToolStripMenuItem.Name = "silenceLogsToolStripMenuItem";
+            this.silenceLogsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.silenceLogsToolStripMenuItem.Text = "Silence Logs";
+            this.silenceLogsToolStripMenuItem.Click += new System.EventHandler(this.silenceLogsToolStripMenuItem_Click);
             // 
             // MainBoard
             // 
@@ -759,6 +768,7 @@
         private System.Windows.Forms.ToolStripMenuItem crashToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem difficultiesToolStripMenuItem;
         private System.Windows.Forms.Timer debugEvents;
+        private System.Windows.Forms.ToolStripMenuItem silenceLogsToolStripMenuItem;
     }
 }
 

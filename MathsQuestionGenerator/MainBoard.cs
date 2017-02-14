@@ -714,7 +714,8 @@ namespace MathsQuestionGenerator
                 debugEvents.Stop();
                 console.writeToConsole("Stopping Difficulties Increment Crash Test...", 1);
                 reset();
-                console.onlyWriteImportant(false);
+                if (silenceLogsToolStripMenuItem.Checked)
+                    console.onlyWriteImportant(false);
             }
         }
         //Increases the difficulty by one and resets the board until it crashes, the number is crashes on is logged and displayed.
@@ -732,8 +733,15 @@ namespace MathsQuestionGenerator
                 console.writeToConsole("Stopping Difficulties Increment Crash Test. ArgumentOutOfRangeException occured at '" + globalDifficulty + "' difficulty.", 2);
                 globalDifficulty--;
                 reset();
-                console.onlyWriteImportant(false);
+                if (silenceLogsToolStripMenuItem.Checked)
+                    console.onlyWriteImportant(false);
             }
+        }
+
+        private void silenceLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            silenceLogsToolStripMenuItem.Checked = !silenceLogsToolStripMenuItem.Checked;
+            console.onlyWriteImportant(silenceLogsToolStripMenuItem.Checked);
         }
     }
 }
