@@ -15,6 +15,7 @@ namespace MathsQuestionGenerator
     public partial class MainBoard : Form
     {
         DebugConsole console = new DebugConsole(); //Calls the 'DebugConsole' class and defines it as 'console' for later use.
+        AboutPage about = new AboutPage(); //Calls the 'AboutPage' class and defines it as 'about' for later use.
         private float[,] EquationNumbers = new float[4, 4]; //Creates a float array of 4*4, this is used to store the randomised numbers that will be used within the equations as well as the symbol and answer for the equations.
         private int globalDifficulty = 10; //Creates the integer for the difficulty of the equations generated, this is set to '10' (Easy) by default and can be changed within the game.
         private int correctSession = 0; //Creates the integer for the correct number of questions this session.
@@ -574,10 +575,15 @@ namespace MathsQuestionGenerator
             if (developerToolStripMenuItem.Visible)
                 console.writeToConsole("Developer Mode has been enabled!", 1);
         }
-        //Is called whenever the 'Debug Console' menu item is clicked, this will launch the console form.
+        //Is called whenever the 'Console' menu item is clicked, this will launch the console form.
         private void debugConsoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             console.Show();
+        }
+        //Is called whenever the 'About' menu item is clicked, this will launch the about form.
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            about.Show();
         }
         //Is called whenever the difficulty is changed whenever the developer mode is enabled, it ensures the difficulty is applied to the game.
         private void difficulty_TextChanged(object sender, EventArgs e)

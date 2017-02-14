@@ -86,6 +86,7 @@
             this.infoText = new System.Windows.Forms.Label();
             this.debugEvents = new System.Windows.Forms.Timer(this.components);
             this.silenceLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questionBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.questionBox2.SuspendLayout();
@@ -167,6 +168,7 @@
             this.menuStrip.BackColor = System.Drawing.Color.LightSteelBlue;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.developerToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -665,6 +667,13 @@
             this.silenceLogsToolStripMenuItem.Text = "Silence Logs";
             this.silenceLogsToolStripMenuItem.Click += new System.EventHandler(this.silenceLogsToolStripMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // MainBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -769,6 +778,7 @@
         private System.Windows.Forms.ToolStripMenuItem difficultiesToolStripMenuItem;
         private System.Windows.Forms.Timer debugEvents;
         private System.Windows.Forms.ToolStripMenuItem silenceLogsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

@@ -44,4 +44,7 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 - Fixed a crash where the custom difficulty was set to 0
 - Fixed a crash where text was pasted into the custom difficulty
 
+|---| 1.0.1.1 |---|
 
+- Added About form
+- Removed unused resource
