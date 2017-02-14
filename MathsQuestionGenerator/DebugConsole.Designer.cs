@@ -61,6 +61,7 @@
             this.console.Location = new System.Drawing.Point(12, 12);
             this.console.MaxLength = 0;
             this.console.Name = "console";
+            this.console.ReadOnly = true;
             this.console.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.console.Size = new System.Drawing.Size(362, 268);
             this.console.TabIndex = 3;
@@ -79,6 +80,7 @@
             this.MaximizeBox = false;
             this.Name = "DebugConsole";
             this.Text = "MQG: Console";
+            this.VisibleChanged += new System.EventHandler(this.scrollOnVisible);
             this.ResumeLayout(false);
 
         }
