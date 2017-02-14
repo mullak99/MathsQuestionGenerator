@@ -25,7 +25,7 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
 |---| 1.0.1.0 |---|
 
-- Added timer
+- Added a timer
 - Added a start screen
 - Added an Exit option
 - Added a 'Custom', user-defined, difficulty option
