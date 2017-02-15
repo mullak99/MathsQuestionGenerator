@@ -1,6 +1,6 @@
 # MathsQuestionGenerator
 
-![MQG](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![MQG](https://raw.githubusercontent.com/mullak99/MathsQuestionGenerator/master/MathsQuestionGenerator/Resources/App.png)
 
 An application for generating pseudo-random maths questions.
 
