@@ -10,7 +10,7 @@ An application for generating pseudo-random maths questions.
 The Latest Releases can always be found at either:
 
 http://github.com/mullak99/MathsQuestionGenerator/releases/latest
-
+or
 http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
 # Usage
