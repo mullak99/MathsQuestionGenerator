@@ -20,13 +20,14 @@ namespace MathsQuestionGenerator
         private int globalDifficulty = 10; //Creates the integer for the difficulty of the equations generated, this is set to '10' (Easy) by default and can be changed within the game.
         private int correctSession = 0; //Creates the integer for the correct number of questions this session.
         private int maxSession = 4; //Creates the integer for the amount of questions generated, with the 'correctSession' variable this allows for the user to tell the percentage of questions correct.
+        private int timerStartTime; //The initial timer second count.
         TimeSpan timer; //Defines 'timer'.
 
         public MainBoard()
         {
             InitializeComponent();
             versionLabel.Text = "v" + Application.ProductVersion; //Sets version label to the version defined in the Assembly information.
-            lockQuestions(true); //Locks (Hides) the four question group boxes and shows the infoText label.
+            lockQuestions(true, true); //Locks (Hides) the four question group boxes and shows the infoText label.
             setActionButton(2); //Sets the 'Submit' button to display 'Start'.
             console.writeToConsole("Initialising complete!"); //Writes to the console to show its current state for debugging purposes..
         }
@@ -49,12 +50,10 @@ namespace MathsQuestionGenerator
             question2.Text = EquationNumbers[1, 0].ToString() + " " + ConvertNumToFunction(Convert.ToInt32(EquationNumbers[1, 1])) + " " + EquationNumbers[1, 2].ToString();
             question3.Text = EquationNumbers[2, 0].ToString() + " " + ConvertNumToFunction(Convert.ToInt32(EquationNumbers[2, 1])) + " " + EquationNumbers[2, 2].ToString();
             question4.Text = EquationNumbers[3, 0].ToString() + " " + ConvertNumToFunction(Convert.ToInt32(EquationNumbers[3, 1])) + " " + EquationNumbers[3, 2].ToString();
-
             dynamicFontSize(question1);
             dynamicFontSize(question2);
             dynamicFontSize(question3);
             dynamicFontSize(question4);
-
         }
         //Shows the answers to the questions.
         private void showAnswers()
@@ -63,7 +62,6 @@ namespace MathsQuestionGenerator
             answer2.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[1, 3]), 2));
             answer3.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[2, 3]), 2));
             answer4.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[3, 3]), 2));
-
             answersToolStripMenuItem.Checked = true;
         }
         //Hides the answers to the questions.
@@ -73,7 +71,6 @@ namespace MathsQuestionGenerator
             answer2.Text = "?";
             answer3.Text = "?";
             answer4.Text = "?";
-
             answersToolStripMenuItem.Checked = false;
         }
         //Checks the difficulty against the presets and checks them under the File > 'Difficulty' menu.
@@ -139,7 +136,7 @@ namespace MathsQuestionGenerator
             guess4.ReadOnly = Lock;
         }
         //Locks (Hides) the four question group boxes and shows the infoText label.
-        private void lockQuestions(bool Lock)
+        private void lockQuestions(bool Lock, bool init = false)
         {
             infoText.Visible = Lock;
             questionBox1.Visible = !Lock;
@@ -148,6 +145,33 @@ namespace MathsQuestionGenerator
             questionBox4.Visible = !Lock;
             correctNum.Visible = !Lock;
             correctNumSession.Visible = !Lock;
+            timeProgress.Visible = !Lock;
+            timerLabel.Visible = !Lock;
+            timeLeft.Visible = !Lock;
+            noteLabel.Visible = !Lock;
+            resetButton.Visible = !Lock;
+            answersToolStripMenuItem.Enabled = !Lock;
+            answerAllToolStripMenuItem.Enabled = !Lock;
+            forceStartSplashToolStripMenuItem.Enabled = !Lock;
+            lockReset(true, init);
+        }
+        //Locks the difficulty triggers.
+        private void lockDifficultyTriggers(bool Lock)
+        {
+            easyToolStripMenuItem.Enabled = !Lock;
+            mediumToolStripMenuItem.Enabled = !Lock;
+            hardToolStripMenuItem.Enabled = !Lock;
+            extremeToolStripMenuItem.Enabled = !Lock;
+        }
+        //Lock the reset button
+        private void lockReset(bool Lock, bool init = false)
+        {
+            resetButton.Enabled = !Lock;
+            resetCurrentToolStripMenuItem.Enabled = !Lock;
+            resetAllToolStripMenuItem.Enabled = !Lock;
+            customToolStripMenuItem.Enabled = !Lock;
+            if (!init)
+                lockDifficultyTriggers(Lock);
         }
         //Resets the quiz (bool complete resets stats too).
         private void reset(bool complete = false, bool debugMode = false)
@@ -163,10 +187,10 @@ namespace MathsQuestionGenerator
                 guess4.Text = "";
                 lockGuesses(false);
                 lockQuestions(false);
-                guess1_Leave(0, null);
-                guess2_Leave(0, null);
-                guess3_Leave(0, null);
-                guess4_Leave(0, null);
+                guess1_Leave(null, null);
+                guess2_Leave(null, null);
+                guess3_Leave(null, null);
+                guess4_Leave(null, null);
                 correctNum.Text = "?/4";
                 guess1.BackColor = Color.White;
                 guess2.BackColor = Color.White;
@@ -185,13 +209,10 @@ namespace MathsQuestionGenerator
                 generateBoard();
                 setActionButton(0);
             }
-            else
+            else if (MessageBox.Show("Difficulty has exceded its limit of '536870911'.\n\nDo you want to set it to the max value?", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (MessageBox.Show("Difficulty has exceded its limit of '536870911'.\n\nDo you want to set it to the max value?", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    globalDifficulty = 536870911;
-                    reset();
-                }
+                globalDifficulty = 536870911;
+                reset();
             }
         }
         //Sets the 'Submit' button to display either 'Next', 'Start' or 'Submit'.
@@ -215,9 +236,7 @@ namespace MathsQuestionGenerator
         //Converts an integer to a maths function.
         private static string ConvertNumToFunction(int num)
         {
-            if (num == 0)
-                return "+";
-            else if (num == 1)
+            if (num == 1)
                 return "-";
             else if (num == 2)
                 return "x";
@@ -230,6 +249,7 @@ namespace MathsQuestionGenerator
         private void setTimer(int seconds)
         {
             console.writeToConsole("Set timer to '" + seconds + "' seconds.");
+            timerStartTime = seconds;
             timer = TimeSpan.FromSeconds(seconds);
             timeProgress.Maximum = seconds;
             timeProgress.Value = timeProgress.Maximum;
@@ -245,6 +265,7 @@ namespace MathsQuestionGenerator
             console.writeToConsole("Timer started!");
             timeLeft.ForeColor = Color.White;
             setTimer(4 * globalDifficulty);
+            lockReset(true);
             quizTimeLeft.Enabled = true;
         }
         //Pauses the countdown of the timer.
@@ -280,14 +301,8 @@ namespace MathsQuestionGenerator
                     EquationNumbers[i, 1] = rnd.Next(0, 2); //Otherwise, it will limit the equations to addition and subtraction.
                     console.writeToConsole("Equation '" + (i + 1) + "' limited to addition and subtraction.");
                 }
-                try
-                {
-                    EquationNumbers[i, 2] = Convert.ToInt32(rnd.Next(1, Convert.ToInt32(EquationNumbers[i, 0]))); //Generates the second number with a random integer between '1' and the value of the first number.
-                }
-                catch (ArgumentOutOfRangeException e)
-                {
-                    console.writeToConsole("minValue cannot be greater than maxValue. Difficulty: " + globalDifficulty + ". " + e, 2);
-                }
+
+                EquationNumbers[i, 2] = Convert.ToInt32(rnd.Next(1, Convert.ToInt32(EquationNumbers[i, 0]))); //Generates the second number with a random integer between '1' and the value of the first number.
 
                 if (EquationNumbers[i, 1] == 0)
                     EquationNumbers[i, 3] = EquationNumbers[i, 0] + EquationNumbers[i, 2]; //If the equation uses addition, it will set [i, 3] to the answer of the two random numbers using addition.
@@ -344,7 +359,6 @@ namespace MathsQuestionGenerator
                     EquationNumbers[i, 2] = Convert.ToInt32(rnd.Next(1, (globalDifficulty / 2))); //If the difficulty is greater than 60 and the equation uses division; it will generate a random number between 1 and (globalDifficulty / 2) for the second number.
                     EquationNumbers[i, 3] = EquationNumbers[i, 0] / EquationNumbers[i, 2]; //If the difficulty is greater than 60 and the equation uses division; it will solve the equation of the two numbers.
                 }
-
                 console.writeToConsole("Finished generation equation '" + (i + 1) + "'.");
             }
         }
@@ -352,6 +366,7 @@ namespace MathsQuestionGenerator
         private void submitAnswers()
         {
             console.writeToConsole("User submitted answers.");
+            lockReset(false);
             pauseTimer();
 
             if (string.IsNullOrEmpty(guess1.Text))
@@ -362,7 +377,6 @@ namespace MathsQuestionGenerator
                 guess3.Text = "0";
             if (string.IsNullOrEmpty(guess4.Text))
                 guess4.Text = "0";
-
             lockGuesses(true);
 
             int numCorrect = 0;
@@ -382,7 +396,6 @@ namespace MathsQuestionGenerator
                 guess1.Text = "0";
                 guess1.BackColor = Color.Red;
             }
-
             try
             {
                 if (Math.Round(Convert.ToDouble(guess2.Text), 2) == Math.Round(Convert.ToDouble(EquationNumbers[1, 3]), 2))
@@ -399,7 +412,6 @@ namespace MathsQuestionGenerator
                 guess2.Text = "0";
                 guess2.BackColor = Color.Red;
             }
-
             try
             {
                 if (Math.Round(Convert.ToDouble(guess3.Text), 2) == Math.Round(Convert.ToDouble(EquationNumbers[2, 3]), 2))
@@ -436,10 +448,8 @@ namespace MathsQuestionGenerator
             correctNum.Text = numCorrect + "/4";
             correctSession += numCorrect;
             correctNumSession.Text = correctSession + "/" + maxSession;
-            
             answersToolStripMenuItem.Enabled = false;
             showAnswers();
-
             console.writeToConsole("User scored '" + correctNum.Text + "'.");
             setActionButton(1);
         }
@@ -447,24 +457,18 @@ namespace MathsQuestionGenerator
         private void ghostText(TextBox textbox, string ghostText, bool ghostMode)
         {
             if(!textbox.ReadOnly)
-            {
                 if (ghostMode)
-                {
                     if (textbox.Text.Length == 0)
                     {
                         textbox.Text = ghostText;
                         textbox.ForeColor = SystemColors.GrayText;
                     }
-                }
                 else
-                {
                     if (textbox.Text == ghostText)
                     {
                         textbox.Text = "";
                         textbox.ForeColor = SystemColors.WindowText;
-                    }
-                }
-            }        
+                    }      
         }
         //Used to generate the next board of equations.
         private void nextBoard()
@@ -507,40 +511,65 @@ namespace MathsQuestionGenerator
                     timeLeft.ForeColor = Color.Red;
                 else if (timer.TotalSeconds <= 10 && timeLeft.ForeColor == Color.White)
                     timeLeft.ForeColor = Color.Yellow;
+
+                if (timer.TotalSeconds == timerStartTime - 5)
+                    lockReset(false);
             }
+        }
+        //Toggles the visibility of the custom difficulty options.
+        private void customDifficulty(bool Show)
+        {
+            difficultyLabel.Visible = Show;
+            difficulty.Visible = Show;
         }
         //Sets the games difficulty to '10'.
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setDifficulty(10);
-            difficultyLabel.Visible = false;
-            difficulty.Visible = false;
+            if (questionBox1.Visible)
+                setDifficulty(10);
+            else
+                easyStartSplash_Checked(sender, e);
+
+            doDifficultyCheck();
+            customDifficulty(false);
         }
         //Sets the games difficulty to '20'.
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setDifficulty(20);
-            difficultyLabel.Visible = false;
-            difficulty.Visible = false;
+            if (questionBox1.Visible)
+                setDifficulty(20);
+            else
+                mediumStartSplash_Checked(sender, e);
+
+            doDifficultyCheck();
+            customDifficulty(false);
         }
         //Sets the games difficulty to '30'.
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setDifficulty(30);
-            difficultyLabel.Visible = false;
-            difficulty.Visible = false;
+            if (questionBox1.Visible)
+                setDifficulty(30);
+            else
+                hardStartSplash_Checked(sender, e);
+
+            doDifficultyCheck();
+            customDifficulty(false);
         }
         //Sets the games difficulty to '100'.
         private void extremeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setDifficulty(100);
-            difficultyLabel.Visible = false;
-            difficulty.Visible = false;
+            if (questionBox1.Visible)
+                setDifficulty(100);
+            else
+                extremeStartSplash_Checked(sender, e);
+
+            doDifficultyCheck();
+            customDifficulty(false);
         }
-        //Manually resets the board, including all statistics (total number correct etc.).
-        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        //Enables the custom difficulty options.
+        private void customToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            reset(true);
+            customDifficulty(!difficulty.Visible);
         }
         //Manually submits the board and checks if the entered guesses are correct.
         private void submitButton_Click(object sender, EventArgs e)
@@ -549,6 +578,11 @@ namespace MathsQuestionGenerator
                 submitAnswers();
             else
                 nextBoard();
+        }
+        //Manually submits the board and checks if the entered guesses are correct. Although it is in the menu.
+        private void submitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            submitButton_Click(sender, e);
         }
         //Is called whenever a user types into the guesses textbox, it ensures that only numbers and full stops can be typed.
         private void textBoxes_KeyPress(object sender, KeyPressEventArgs e)
@@ -562,23 +596,38 @@ namespace MathsQuestionGenerator
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
-        //Manually resets the board, including all statistics (total number correct etc.).
+        //Manually resets the board.
         private void resetButton_Click(object sender, EventArgs e)
         {
-            resetToolStripMenuItem_Click(sender, e);
+            if (Control.ModifierKeys == Keys.Shift)
+                resetAllToolStripMenuItem_Click(sender, e);
+            else
+                resetCurrentToolStripMenuItem_Click(sender, e);
+        }
+        //Manually resets the board.
+        private void resetCurrentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (resetButton.Enabled)
+                reset();
+        }
+        //Manually resets the board, including all statistics (total number correct etc.).
+        private void resetAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (resetButton.Enabled)
+                reset(true);
         }
         //Is called whenever the version label is clicked at the bottom right of the application, it is used to activate the developer options (reveal answers and debug console).
         private void versionLabel_Click(object sender, EventArgs e)
         {
             developerToolStripMenuItem.Visible = !developerToolStripMenuItem.Visible;
-
             if (developerToolStripMenuItem.Visible)
                 console.writeToConsole("Developer Mode has been enabled!", 1);
         }
         //Is called whenever the 'Console' menu item is clicked, this will launch the console form.
         private void debugConsoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            console.Show();
+            if(developerToolStripMenuItem.Visible)
+                console.Show();
         }
         //Is called whenever the 'About' menu item is clicked, this will launch the about form.
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -589,32 +638,28 @@ namespace MathsQuestionGenerator
         private void difficulty_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(difficulty.Text) || difficulty.Text == "0")
-            {
                 globalDifficulty = 10;
-            }
             else if(Int32.TryParse(difficulty.Text, out globalDifficulty)) //Tries to parse the text within the 'difficulty' textbox to the 'globalDifficulty' integer.
-            {
                 globalDifficulty = Int32.Parse(difficulty.Text);
-            }
             else
-            {
                 globalDifficulty = 10;
-            }
             doDifficultyCheck();
-            
         }
         //Is called whenever the 'Reveal Answers' menu item is clicked, this will reveal all the answers for the current questions.
         private void answersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            answersToolStripMenuItem.Checked = !answersToolStripMenuItem.Checked;
-
-            if (answersToolStripMenuItem.Checked)
+            if (developerToolStripMenuItem.Visible)
             {
-                showAnswers(); //Show the answers.
-                console.writeToConsole("Answers have been forced visible!", 1);
+                answersToolStripMenuItem.Checked = !answersToolStripMenuItem.Checked;
+
+                if (answersToolStripMenuItem.Checked)
+                {
+                    showAnswers(); //Show the answers.
+                    console.writeToConsole("Answers have been forced visible!", 1);
+                }
+                else
+                    hideAnswers(); //Hide the answers.
             }
-            else
-                hideAnswers(); //Hide the answers.
         }
         //Is called whenever the user changes the value of the guess textboxes, it ensures that the value entered can be converted to a float.
         private void guess_TextChanged(object sender, EventArgs e)
@@ -680,48 +725,48 @@ namespace MathsQuestionGenerator
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             console.Dispose();
+            about.Dispose();
             this.Dispose();
-        }
-        //Enables 'Developer' mode.
-        private void customToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            difficultyLabel.Visible = !difficultyLabel.Visible;
-            difficulty.Visible = !difficulty.Visible;
         }
         //Fills all answer boxes with the correct answer.
         private void answerAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            guess1.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[0, 3]), 2));
-            guess2.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[1, 3]), 2));
-            guess3.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[2, 3]), 2));
-            guess4.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[3, 3]), 2));
-
-            guess1.ForeColor = Color.Black;
-            guess2.ForeColor = Color.Black;
-            guess3.ForeColor = Color.Black;
-            guess4.ForeColor = Color.Black;
+            if(developerToolStripMenuItem.Visible)
+            {
+                guess1.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[0, 3]), 2));
+                guess2.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[1, 3]), 2));
+                guess3.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[2, 3]), 2));
+                guess4.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[3, 3]), 2));
+                guess1.ForeColor = Color.Black;
+                guess2.ForeColor = Color.Black;
+                guess3.ForeColor = Color.Black;
+                guess4.ForeColor = Color.Black;
+            }
         }
         //Attempts to find the difficulty limit of the program (Whenever something excedes the 32-bit integer).
         private void difficultiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(!difficultiesToolStripMenuItem.Checked)
+            if (developerToolStripMenuItem.Visible)
             {
-                difficultiesToolStripMenuItem.Checked = true;
-                console.onlyWriteImportant(true);
-                debugConsoleToolStripMenuItem_Click(null, null);
-                console.writeToConsole("Running Difficulties Increment Crash Test...", 1);
-                globalDifficulty = 536865000;
-                customToolStripMenuItem_Click(null, null);
-                debugEvents.Start();
-            }
-            else
-            {
-                difficultiesToolStripMenuItem.Checked = false;
-                debugEvents.Stop();
-                console.writeToConsole("Stopping Difficulties Increment Crash Test...", 1);
-                reset();
-                if (silenceLogsToolStripMenuItem.Checked)
+                if (!difficultiesToolStripMenuItem.Checked)
+                {
+                    difficultiesToolStripMenuItem.Checked = true;
+                    console.onlyWriteImportant(true);
+                    debugConsoleToolStripMenuItem_Click(null, null);
+                    console.writeToConsole("Running Difficulties Increment Crash Test...", 1);
+                    globalDifficulty = 536870000;
+                    customToolStripMenuItem_Click(null, null);
+                    debugEvents.Start();
+                }
+                else
+                {
+                    difficultiesToolStripMenuItem.Checked = false;
+                    debugEvents.Stop();
+                    console.writeToConsole("Stopping Difficulties Increment Crash Test...", 1);
+                    reset();
+                    silenceLogsToolStripMenuItem.Checked = false;
                     console.onlyWriteImportant(false);
+                }
             }
         }
         //Increases the difficulty by one and resets the board until it crashes, the number is crashes on is logged and displayed.
@@ -739,15 +784,81 @@ namespace MathsQuestionGenerator
                 console.writeToConsole("Stopping Difficulties Increment Crash Test. ArgumentOutOfRangeException occured at '" + globalDifficulty + "' difficulty.", 2);
                 globalDifficulty--;
                 reset();
-                if (silenceLogsToolStripMenuItem.Checked)
-                    console.onlyWriteImportant(false);
+                silenceLogsToolStripMenuItem.Checked = false;
+                console.onlyWriteImportant(false);
             }
         }
-
+        //Silences the logs to only show warnings and errors.
         private void silenceLogsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            silenceLogsToolStripMenuItem.Checked = !silenceLogsToolStripMenuItem.Checked;
-            console.onlyWriteImportant(silenceLogsToolStripMenuItem.Checked);
+            if (developerToolStripMenuItem.Visible)
+            {
+                silenceLogsToolStripMenuItem.Checked = !silenceLogsToolStripMenuItem.Checked;
+                console.onlyWriteImportant(silenceLogsToolStripMenuItem.Checked);
+            }
+        }
+        //Bypasses the reset cooldown and forces the questions to reset.
+        private void forceResetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (developerToolStripMenuItem.Visible)
+            {
+                console.writeToConsole("Reset has been forced!");
+                reset();
+            }
+        }
+        //Forces the Start Splash screen to be shown.
+        private void forceStartSplashToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (developerToolStripMenuItem.Visible)
+            {
+                console.onlyWriteImportant(true);
+                globalDifficulty = 10;
+                easyToolStripMenuItem_Click(sender, e);
+                easyStartSplash_Checked(sender, e);
+                easyStartSplash.Checked = true;
+                reset(true);
+                pauseTimer();
+                setActionButton(2);
+                lockQuestions(true);
+                lockDifficultyTriggers(false);
+                console.onlyWriteImportant(false);
+            }
+        }
+        //Sets the selected difficulty to Easy (10) when on the startup splash screen.
+        private void easyStartSplash_Checked(object sender, EventArgs e)
+        {
+            globalDifficulty = 10;
+            easyStartSplash.Checked = true;
+            mediumStartSplash.Checked = false;
+            hardStartSplash.Checked = false;
+            extremeStartSplash.Checked = false;
+        }
+        //Sets the selected difficulty to Medium (20) when on the startup splash screen.
+        private void mediumStartSplash_Checked(object sender, EventArgs e)
+        {
+            globalDifficulty = 20;
+            easyStartSplash.Checked = false;
+            mediumStartSplash.Checked = true;
+            hardStartSplash.Checked = false;
+            extremeStartSplash.Checked = false;
+        }
+        //Sets the selected difficulty to Hard (30) when on the startup splash screen.
+        private void hardStartSplash_Checked(object sender, EventArgs e)
+        {
+            globalDifficulty = 30;
+            easyStartSplash.Checked = false;
+            mediumStartSplash.Checked = false;
+            hardStartSplash.Checked = true;
+            extremeStartSplash.Checked = false;
+        }
+        //Sets the selected difficulty to Extreme (100) when on the startup splash screen.
+        private void extremeStartSplash_Checked(object sender, EventArgs e)
+        {
+            globalDifficulty = 100;
+            easyStartSplash.Checked = false;
+            mediumStartSplash.Checked = false;
+            hardStartSplash.Checked = false;
+            extremeStartSplash.Checked = true;
         }
     }
 }

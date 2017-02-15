@@ -48,3 +48,16 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
 - Added About form
 - Removed unused resource
+
+|---| 1.0.2.0 |---|
+
+- Added difficulty triggers on the start splash screen
+- Added a cooldown (5 sec) on the reset button whenever generating new questions
+- Added a developer option to force a reset (Bypass 5 second cooldown)
+- Added a developer option to force the startup splash screen
+- Added keyboard shortcuts to all menu items
+- Added a submit menu item
+- Added/Split the reset options in the menu to include a normal reset and a complete reset (Normal+Stats Reset)
+- Added a shortcut to the reset button (Holding Shift when clicking) to do a complete reset (Normal+Stats Reset)
+- Changed the colour scheme of the developer console to match the main window
+- Removed the timer, progress bar, reset button and 2dp note from the startup splash screen
