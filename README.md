@@ -64,3 +64,26 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 - Added a shortcut to the reset button (Holding Shift when clicking) to do a complete reset (Normal+Stats Reset)
 - Changed the colour scheme of the developer console to match the main window
 - Removed the timer, progress bar, reset button and 2dp note from the startup splash screen
+
+|---| 1.0.3.0 |---|
+
+- Added a Check for Updates feature that runs on app start
+- Added an Update Page to contain detailed update information
+- Added a popup if you are on an old version of MQG
+- Added a Help menu item (Moves 'About' into the 'Help' menu)
+- Added a developer option to change the timers tick rate
+- Added a developer option to auto-answer questions
+- Added a 'DEV' logging level for logs created by 'cheaty' developer options
+- Added a Version Spoofer
+- Fixed resetting after submitting answers not increasing the total number of answers you could have correct
+- Fixed log levels greater than 2 being regarded as level 0.
+- Fixed changing start splash screen difficulty not updating 'File > New' difficulty checkmarks
+- Fixed some abbreviations
+- Replaced the console 'Close' button with a 'Clear' button to empty the console
+- Changed the buttons to a 'Popup' style
+- Changed the Start/Submit/Next button shortcut
+- Changed the logging levels (0 = Default, 1 = DEV, 2 = WARN, 3 = ERROR)
+- Allowed for the changing of the Submit menu item text, it now syncs with the text on the button
+- Reworked the watermark/ghost text in the guess textboxes to make it more reliable
+- Removed nextBoard() and replaced all instances with reset(), it wasn't necessary with the 'submit-reset' bugfix
+- Removed unneeded globalDifficulty writes, replaced them with setDifficulty()

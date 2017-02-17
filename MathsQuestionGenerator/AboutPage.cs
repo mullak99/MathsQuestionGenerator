@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Reflection;
+using System.IO;
+using System.Net;
 
 namespace MathsQuestionGenerator
 {
@@ -16,20 +19,19 @@ namespace MathsQuestionGenerator
         public AboutPage()
         {
             InitializeComponent();
-            versionLabel.Text = "v" + Application.ProductVersion; //Sets version label to the version defined in the Assembly information.
         }
-
-        private void logoMQM_Click(object sender, EventArgs e) //Opens the Github link once the logo is clicked.
+        //Opens the Github link once the logo is clicked.
+        private void logoMQG_Click(object sender, EventArgs e) 
         {
             Process.Start("http://github.com/mullak99/MathsQuestionGenerator");
         }
-
-        private void githubLink_Click(object sender, EventArgs e) //Executes logoMQM_Click once the label is clicked.
+        //Executes logoMQM_Click once the label is clicked.
+        private void githubLink_Click(object sender, EventArgs e)
         {
-            logoMQM_Click(sender, e);
+            logoMQG_Click(sender, e);
         }
-
-        protected override void OnFormClosing(FormClosingEventArgs e) //Overrides the Windows ('X') to hide the form instead of disposing it.
+        //Overrides the Windows ('X') to hide the form instead of disposing it.
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
 

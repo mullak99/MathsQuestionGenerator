@@ -49,16 +49,32 @@
             this.resetCurrentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.developerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugConsoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.answersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.answerAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.silenceLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerTickRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms1000ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms500ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms250ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms100ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms50ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ms1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spoofVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assemblyVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.futureVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.latestVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.v1000ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceStartSplashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.difficultiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.massAnswerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submitButton = new System.Windows.Forms.Button();
             this.questionBox2 = new System.Windows.Forms.GroupBox();
             this.answer2 = new System.Windows.Forms.Label();
@@ -96,6 +112,7 @@
             this.mediumStartSplash = new System.Windows.Forms.RadioButton();
             this.hardStartSplash = new System.Windows.Forms.RadioButton();
             this.extremeStartSplash = new System.Windows.Forms.RadioButton();
+            this.serverErrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questionBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.questionBox2.SuspendLayout();
@@ -140,6 +157,7 @@
             // guess1
             // 
             this.guess1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guess1.ForeColor = System.Drawing.Color.Black;
             this.guess1.Location = new System.Drawing.Point(290, 13);
             this.guess1.Name = "guess1";
             this.guess1.Size = new System.Drawing.Size(139, 38);
@@ -177,7 +195,7 @@
             this.menuStrip.BackColor = System.Drawing.Color.LightSteelBlue;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.aboutToolStripMenuItem,
+            this.helpToolStripMenuItem,
             this.developerToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -205,7 +223,7 @@
             this.extremeToolStripMenuItem,
             this.customToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // easyToolStripMenuItem
@@ -253,8 +271,8 @@
             // submitToolStripMenuItem
             // 
             this.submitToolStripMenuItem.Name = "submitToolStripMenuItem";
-            this.submitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.submitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.submitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.submitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.submitToolStripMenuItem.Text = "Submit";
             this.submitToolStripMenuItem.Click += new System.EventHandler(this.submitToolStripMenuItem_Click);
             // 
@@ -264,7 +282,7 @@
             this.resetCurrentToolStripMenuItem,
             this.resetAllToolStripMenuItem});
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             // 
             // resetCurrentToolStripMenuItem
@@ -288,16 +306,32 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.End)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.checkForUpdatesToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
             // 
             // developerToolStripMenuItem
             // 
@@ -306,6 +340,8 @@
             this.answersToolStripMenuItem,
             this.answerAllToolStripMenuItem,
             this.silenceLogsToolStripMenuItem,
+            this.timerTickRateToolStripMenuItem,
+            this.spoofVersionToolStripMenuItem,
             this.forceStartSplashToolStripMenuItem,
             this.forceResetToolStripMenuItem,
             this.crashToolStripMenuItem});
@@ -350,6 +386,139 @@
             this.silenceLogsToolStripMenuItem.Text = "Silence Logs";
             this.silenceLogsToolStripMenuItem.Click += new System.EventHandler(this.silenceLogsToolStripMenuItem_Click);
             // 
+            // timerTickRateToolStripMenuItem
+            // 
+            this.timerTickRateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ms1000ToolStripMenuItem,
+            this.ms500ToolStripMenuItem,
+            this.ms250ToolStripMenuItem,
+            this.ms100ToolStripMenuItem,
+            this.ms50ToolStripMenuItem,
+            this.ms10ToolStripMenuItem,
+            this.ms1ToolStripMenuItem});
+            this.timerTickRateToolStripMenuItem.Name = "timerTickRateToolStripMenuItem";
+            this.timerTickRateToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.timerTickRateToolStripMenuItem.Text = "Timer Tick Rate";
+            // 
+            // ms1000ToolStripMenuItem
+            // 
+            this.ms1000ToolStripMenuItem.Checked = true;
+            this.ms1000ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ms1000ToolStripMenuItem.Name = "ms1000ToolStripMenuItem";
+            this.ms1000ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D1)));
+            this.ms1000ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms1000ToolStripMenuItem.Text = "1000ms (Default)";
+            this.ms1000ToolStripMenuItem.Click += new System.EventHandler(this.ms1000ToolStripMenuItem_Click);
+            // 
+            // ms500ToolStripMenuItem
+            // 
+            this.ms500ToolStripMenuItem.Name = "ms500ToolStripMenuItem";
+            this.ms500ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D2)));
+            this.ms500ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms500ToolStripMenuItem.Text = "500ms";
+            this.ms500ToolStripMenuItem.Click += new System.EventHandler(this.ms500ToolStripMenuItem_Click);
+            // 
+            // ms250ToolStripMenuItem
+            // 
+            this.ms250ToolStripMenuItem.Name = "ms250ToolStripMenuItem";
+            this.ms250ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D3)));
+            this.ms250ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms250ToolStripMenuItem.Text = "250ms";
+            this.ms250ToolStripMenuItem.Click += new System.EventHandler(this.ms250ToolStripMenuItem_Click);
+            // 
+            // ms100ToolStripMenuItem
+            // 
+            this.ms100ToolStripMenuItem.Name = "ms100ToolStripMenuItem";
+            this.ms100ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D4)));
+            this.ms100ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms100ToolStripMenuItem.Text = "100ms";
+            this.ms100ToolStripMenuItem.Click += new System.EventHandler(this.ms100ToolStripMenuItem_Click);
+            // 
+            // ms50ToolStripMenuItem
+            // 
+            this.ms50ToolStripMenuItem.Name = "ms50ToolStripMenuItem";
+            this.ms50ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D5)));
+            this.ms50ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms50ToolStripMenuItem.Text = "50ms";
+            this.ms50ToolStripMenuItem.Click += new System.EventHandler(this.ms50ToolStripMenuItem_Click);
+            // 
+            // ms10ToolStripMenuItem
+            // 
+            this.ms10ToolStripMenuItem.Name = "ms10ToolStripMenuItem";
+            this.ms10ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D6)));
+            this.ms10ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms10ToolStripMenuItem.Text = "10ms";
+            this.ms10ToolStripMenuItem.Click += new System.EventHandler(this.ms10ToolStripMenuItem_Click);
+            // 
+            // ms1ToolStripMenuItem
+            // 
+            this.ms1ToolStripMenuItem.Name = "ms1ToolStripMenuItem";
+            this.ms1ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.D7)));
+            this.ms1ToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.ms1ToolStripMenuItem.Text = "1ms";
+            this.ms1ToolStripMenuItem.Click += new System.EventHandler(this.ms1ToolStripMenuItem_Click);
+            // 
+            // spoofVersionToolStripMenuItem
+            // 
+            this.spoofVersionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.assemblyVersionToolStripMenuItem,
+            this.futureVersionToolStripMenuItem,
+            this.latestVersionToolStripMenuItem,
+            this.v1000ToolStripMenuItem,
+            this.serverErrorToolStripMenuItem});
+            this.spoofVersionToolStripMenuItem.Name = "spoofVersionToolStripMenuItem";
+            this.spoofVersionToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.spoofVersionToolStripMenuItem.Text = "Spoof Version";
+            // 
+            // assemblyVersionToolStripMenuItem
+            // 
+            this.assemblyVersionToolStripMenuItem.Checked = true;
+            this.assemblyVersionToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.assemblyVersionToolStripMenuItem.Name = "assemblyVersionToolStripMenuItem";
+            this.assemblyVersionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D1)));
+            this.assemblyVersionToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.assemblyVersionToolStripMenuItem.Text = "Assembly Version";
+            this.assemblyVersionToolStripMenuItem.Click += new System.EventHandler(this.assemblyVersionToolStripMenuItem_Click);
+            // 
+            // futureVersionToolStripMenuItem
+            // 
+            this.futureVersionToolStripMenuItem.Name = "futureVersionToolStripMenuItem";
+            this.futureVersionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D2)));
+            this.futureVersionToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.futureVersionToolStripMenuItem.Text = "Future Version";
+            this.futureVersionToolStripMenuItem.Click += new System.EventHandler(this.futureVersionToolStripMenuItem_Click);
+            // 
+            // latestVersionToolStripMenuItem
+            // 
+            this.latestVersionToolStripMenuItem.Name = "latestVersionToolStripMenuItem";
+            this.latestVersionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D3)));
+            this.latestVersionToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.latestVersionToolStripMenuItem.Text = "Latest Version";
+            this.latestVersionToolStripMenuItem.Click += new System.EventHandler(this.latestVersionToolStripMenuItem_Click);
+            // 
+            // v1000ToolStripMenuItem
+            // 
+            this.v1000ToolStripMenuItem.Name = "v1000ToolStripMenuItem";
+            this.v1000ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D4)));
+            this.v1000ToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.v1000ToolStripMenuItem.Text = "Initial Version";
+            this.v1000ToolStripMenuItem.Click += new System.EventHandler(this.v1000ToolStripMenuItem_Click);
+            // 
             // forceStartSplashToolStripMenuItem
             // 
             this.forceStartSplashToolStripMenuItem.Name = "forceStartSplashToolStripMenuItem";
@@ -371,7 +540,8 @@
             // crashToolStripMenuItem
             // 
             this.crashToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.difficultiesToolStripMenuItem});
+            this.difficultiesToolStripMenuItem,
+            this.massAnswerToolStripMenuItem});
             this.crashToolStripMenuItem.Name = "crashToolStripMenuItem";
             this.crashToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.crashToolStripMenuItem.Text = "Crash";
@@ -385,11 +555,20 @@
             this.difficultiesToolStripMenuItem.Text = "Difficulty Limit";
             this.difficultiesToolStripMenuItem.Click += new System.EventHandler(this.difficultiesToolStripMenuItem_Click);
             // 
+            // massAnswerToolStripMenuItem
+            // 
+            this.massAnswerToolStripMenuItem.Name = "massAnswerToolStripMenuItem";
+            this.massAnswerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Z)));
+            this.massAnswerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.massAnswerToolStripMenuItem.Text = "Mass Answer";
+            this.massAnswerToolStripMenuItem.Click += new System.EventHandler(this.massAnswerToolStripMenuItem_Click);
+            // 
             // submitButton
             // 
             this.submitButton.BackColor = System.Drawing.Color.Lime;
             this.submitButton.FlatAppearance.BorderSize = 0;
-            this.submitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.submitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submitButton.Location = new System.Drawing.Point(12, 351);
             this.submitButton.Name = "submitButton";
@@ -436,6 +615,7 @@
             // guess2
             // 
             this.guess2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guess2.ForeColor = System.Drawing.Color.Black;
             this.guess2.Location = new System.Drawing.Point(290, 13);
             this.guess2.Name = "guess2";
             this.guess2.Size = new System.Drawing.Size(139, 38);
@@ -505,6 +685,7 @@
             // guess3
             // 
             this.guess3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guess3.ForeColor = System.Drawing.Color.Black;
             this.guess3.Location = new System.Drawing.Point(290, 13);
             this.guess3.Name = "guess3";
             this.guess3.Size = new System.Drawing.Size(139, 38);
@@ -574,6 +755,7 @@
             // guess4
             // 
             this.guess4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guess4.ForeColor = System.Drawing.Color.Black;
             this.guess4.Location = new System.Drawing.Point(290, 13);
             this.guess4.Name = "guess4";
             this.guess4.Size = new System.Drawing.Size(139, 38);
@@ -610,7 +792,7 @@
             // 
             this.resetButton.BackColor = System.Drawing.Color.Yellow;
             this.resetButton.FlatAppearance.BorderSize = 0;
-            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.resetButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.resetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetButton.Location = new System.Drawing.Point(482, 356);
             this.resetButton.Name = "resetButton";
@@ -805,6 +987,16 @@
             this.extremeStartSplash.UseVisualStyleBackColor = true;
             this.extremeStartSplash.Click += new System.EventHandler(this.extremeStartSplash_Checked);
             // 
+            // serverErrorToolStripMenuItem
+            // 
+            this.serverErrorToolStripMenuItem.Name = "serverErrorToolStripMenuItem";
+            this.serverErrorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D5)));
+            this.serverErrorToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.serverErrorToolStripMenuItem.Text = "Server Error";
+            this.serverErrorToolStripMenuItem.Click += new System.EventHandler(this.serverErrorToolStripMenuItem_Click);
+            // 
             // MainBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -913,7 +1105,7 @@
         private System.Windows.Forms.ToolStripMenuItem difficultiesToolStripMenuItem;
         private System.Windows.Forms.Timer debugEvents;
         private System.Windows.Forms.ToolStripMenuItem silenceLogsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forceResetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetCurrentToolStripMenuItem;
@@ -923,6 +1115,23 @@
         private System.Windows.Forms.RadioButton mediumStartSplash;
         private System.Windows.Forms.RadioButton hardStartSplash;
         private System.Windows.Forms.RadioButton extremeStartSplash;
+        private System.Windows.Forms.ToolStripMenuItem massAnswerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem timerTickRateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms1000ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms500ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms250ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms100ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms50ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms10ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ms1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spoofVersionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assemblyVersionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem latestVersionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem v1000ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem futureVersionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serverErrorToolStripMenuItem;
     }
 }
 

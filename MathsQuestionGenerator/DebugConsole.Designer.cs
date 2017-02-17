@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebugConsole));
-            this.closeButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.saveLog = new System.Windows.Forms.Button();
             this.console = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // closeButton
+            // clearButton
             // 
-            this.closeButton.BackColor = System.Drawing.Color.Red;
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeButton.Location = new System.Drawing.Point(299, 286);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.closeButton.Size = new System.Drawing.Size(75, 23);
-            this.closeButton.TabIndex = 1;
-            this.closeButton.Text = "Close";
-            this.closeButton.UseVisualStyleBackColor = false;
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            this.clearButton.BackColor = System.Drawing.Color.Red;
+            this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(299, 286);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.clearButton.Size = new System.Drawing.Size(75, 23);
+            this.clearButton.TabIndex = 1;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = false;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // saveLog
             // 
             this.saveLog.BackColor = System.Drawing.Color.Lime;
-            this.saveLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveLog.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveLog.Location = new System.Drawing.Point(12, 286);
             this.saveLog.Name = "saveLog";
@@ -83,19 +83,18 @@
             this.ClientSize = new System.Drawing.Size(386, 315);
             this.Controls.Add(this.console);
             this.Controls.Add(this.saveLog);
-            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.clearButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DebugConsole";
             this.Text = "MQG: Console";
-            this.VisibleChanged += new System.EventHandler(this.scrollOnVisible);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button saveLog;
         private System.Windows.Forms.RichTextBox console;
     }
