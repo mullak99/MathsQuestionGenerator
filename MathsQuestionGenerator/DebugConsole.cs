@@ -14,6 +14,7 @@ namespace MathsQuestionGenerator
     public partial class DebugConsole : Form
     {
         private bool logWrites = true;
+        private bool loggedDevMode = false;
 
         public DebugConsole()
         {
@@ -32,26 +33,24 @@ namespace MathsQuestionGenerator
         //Writes the text string to the developer/debugging console, along with the appropriate colour and prefix depending on log level.
         public void writeToConsole(string text, int logLevel = 0)
         {
-            if (logLevel >= 3) //Error log level. Used for crashes or other extreme issues.
-            {
-                AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [ERROR] " + text + Environment.NewLine, Color.Red); //Appends the 'text' text to the textbox after the time and '[ERROR]', while using Red text.
-                if (MessageBox.Show(text + "\n\nDo you want to save a log file?", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes) //Shows a messagebox asking if the user wants to save a log file
+            if (text != "Developer Mode has been enabled!" || !loggedDevMode)
+                if (logLevel >= 3) //Error log level. Used for crashes or other extreme issues.
                 {
-                    saveLogFile(); //Pressing 'Yes' will save a log file into the directory of the application.
+                    AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [ERROR] " + text + Environment.NewLine, Color.Red); //Appends the 'text' text to the textbox after the time and '[ERROR]', while using Red text.
+                    if (MessageBox.Show(text + "\n\nDo you want to save a log file?", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes) //Shows a messagebox asking if the user wants to save a log file
+                    {
+                        saveLogFile(); //Pressing 'Yes' will save a log file into the directory of the application.
+                    }
                 }
-            }
-            else if (logLevel == 2) //Warning log level. Used for anything that could cause instabilities within normal operation.
-            {
-                AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [WARN] " + text + Environment.NewLine, Color.Orange); //Appends the 'text' text to the textbox after the time and '[WARN]', while using Orange text.
-            }
-            else if (logWrites && logLevel == 1) //Cheat log level. Used when a developer-only 'cheat' is executed
-            {
-                AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [DEV] " + text + Environment.NewLine, Color.DarkViolet); //Appends the 'text' text to the textbox after the time and '[DEV]', while using Violet text.
-            }
-            else if (logWrites) //Default log level. Used to detail what is happening within the code.
-            {
-                AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] " + text + Environment.NewLine, Color.Green); //Appends the 'text' text to the textbox after the time, while using Green text.
-            }
+                else if (logLevel == 2) //Warning log level. Used for anything that could cause instabilities within normal operation.
+                    AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [WARN] " + text + Environment.NewLine, Color.Orange); //Appends the 'text' text to the textbox after the time and '[WARN]', while using Orange text.
+                else if (logWrites && logLevel == 1) //Cheat log level. Used when a developer-only 'cheat' is executed
+                    AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [DEV] " + text + Environment.NewLine, Color.DarkViolet); //Appends the 'text' text to the textbox after the time and '[DEV]', while using Violet text.
+                else if (logWrites) //Default log level. Used to detail what is happening within the code.
+                    AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] " + text + Environment.NewLine, Color.Green); //Appends the 'text' text to the textbox after the time, while using Green text.
+            
+            if (text == "Developer Mode has been enabled!")
+                loggedDevMode = true;
         }
         //Ensures that only logs with level 1 or greater are written to the console.
         public void onlyWriteImportant(bool enabled)
@@ -83,6 +82,7 @@ namespace MathsQuestionGenerator
         private void clearButton_Click(object sender, EventArgs e)
         {
             console.Text = "";
+            loggedDevMode = false;
         }
         //Manually saves a log file.
         private void saveLog_Click(object sender, EventArgs e)

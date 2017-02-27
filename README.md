@@ -76,7 +76,7 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 - Added a 'DEV' logging level for logs created by 'cheaty' developer options
 - Added a Version Spoofer
 - Fixed resetting after submitting answers not increasing the total number of answers you could have correct
-- Fixed log levels greater than 2 being regarded as level 0.
+- Fixed log levels greater than 2 being regarded as level 0
 - Fixed changing start splash screen difficulty not updating 'File > New' difficulty checkmarks
 - Fixed some abbreviations
 - Replaced the console 'Close' button with a 'Clear' button to empty the console
@@ -87,3 +87,8 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 - Reworked the watermark/ghost text in the guess textboxes to make it more reliable
 - Removed nextBoard() and replaced all instances with reset(), it wasn't necessary with the 'submit-reset' bugfix
 - Removed unneeded globalDifficulty writes, replaced them with setDifficulty()
+
+|---| 1.0.3.1 |---|
+
+- Added a check to stop "Developer Mode has been enabled!" being posted multiple times each log
+- Fixed a bypass for spoofing a server error and another version simultaneously (Enabling Server Error spoof, then selecting another version spoof)

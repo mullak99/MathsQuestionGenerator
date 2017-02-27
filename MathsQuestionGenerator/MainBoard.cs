@@ -1106,6 +1106,8 @@ namespace MathsQuestionGenerator
             futureVersionToolStripMenuItem.Checked = true;
             latestVersionToolStripMenuItem.Checked = false;
             v1000ToolStripMenuItem.Checked = false;
+            serverErrorToolStripMenuItem.Checked = false;
+            update.spoofServerError(false);
             update.spoofVersion("99.99.99.99", true);
             versionLabel.Text = update.getVersionInfo();
             console.writeToConsole("Version Spoofer: Newer Version Set!", 1);
@@ -1117,6 +1119,8 @@ namespace MathsQuestionGenerator
             futureVersionToolStripMenuItem.Checked = false;
             latestVersionToolStripMenuItem.Checked = true;
             v1000ToolStripMenuItem.Checked = false;
+            serverErrorToolStripMenuItem.Checked = false;
+            update.spoofServerError(false);
             update.spoofVersion(update.getLatestVersion(), true);
             versionLabel.Text = update.getVersionInfo();
             console.writeToConsole("Version Spoofer: Latest Version Set!", 1);
@@ -1128,6 +1132,8 @@ namespace MathsQuestionGenerator
             futureVersionToolStripMenuItem.Checked = false;
             latestVersionToolStripMenuItem.Checked = false;
             v1000ToolStripMenuItem.Checked = true;
+            serverErrorToolStripMenuItem.Checked = false;
+            update.spoofServerError(false);
             update.spoofVersion("1.0.0.0", true);
             versionLabel.Text = update.getVersionInfo();
             console.writeToConsole("Version Spoofer: Initial Release Version Set!", 1);
