@@ -53,7 +53,7 @@ namespace MathsQuestionGenerator
             }
             else if (detailedUpdateInfo() == "SERVERERROR")
             {
-                briefDesc.Text = "Unable to connect to the update server. Try again later.";
+                briefDesc.Text = "Unable to connect to the update server. Please check your internet connection or try again later.";
                 latestVer.Text = "SERVER ERROR!";
                 downloadUpdate.Visible = false;
             }
@@ -125,16 +125,24 @@ namespace MathsQuestionGenerator
         //Gets the latest version information from the build server.
         public string getLatestVersion()
         {
-            WebClient client = new WebClient();
+            try
+            {
+                WebClient client = new WebClient();
 
-            string url = "http://builds.mullak99.co.uk/MathsQuestionGenerator/checkupdate.php";
+                string url = "http://builds.mullak99.co.uk/MathsQuestionGenerator/checkupdate.php";
 
-            byte[] html = client.DownloadData(url);
-            UTF8Encoding utf = new UTF8Encoding();
-            if (String.IsNullOrEmpty(utf.GetString(html)) || fakeServerError)
+                byte[] html = client.DownloadData(url);
+                UTF8Encoding utf = new UTF8Encoding();
+                if (String.IsNullOrEmpty(utf.GetString(html)) || fakeServerError)
+                    return "0.0.0.0";
+                else
+                    return utf.GetString(html);
+            }
+            catch (Exception e)
+            {
                 return "0.0.0.0";
-            else
-                return utf.GetString(html); ;
+            }
+            
         }
         //Used to compare the application version and the latest version from the build server.
         public bool isUpdateAvailable()

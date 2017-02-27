@@ -92,3 +92,7 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
 - Added a check to stop "Developer Mode has been enabled!" being posted multiple times each log
 - Fixed a bypass for spoofing a server error and another version simultaneously (Enabling Server Error spoof, then selecting another version spoof)
+
+|---| 1.0.3.2 |---|
+
+- Fixed a crash when checking for an update (and on launch) when the user does not have an internet connection
