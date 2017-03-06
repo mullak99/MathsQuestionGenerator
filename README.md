@@ -20,12 +20,12 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
 Developer Mode allows for debugging various features of the program, this mode can be accessed by clicking on the version at the bottom right of the application, it will then appear on the menu.
 
+//TODO - Complete this section.
+
 ## Usage of the source code
 
 - Under 'Clone or Download', Download and extract this Git and run 'MathsQuestionGenerator.sln' with Visual Studio.
 - Alternatively, under 'Clone or Download' press 'Open in Visual Studio'.
-
-//TODO - Complete this section.
 
 ## Changelog
 
