@@ -6,21 +6,28 @@ An application for generating pseudo-random maths questions.
 
 //TODO - Complete this section.
 
-# Download
+## Download
+
 The Latest Releases can always be found at either:
 
 http://github.com/mullak99/MathsQuestionGenerator/releases/latest
 or
 http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
-# Usage
+## Application Usage
+
+### Developer Mode
+
+Developer Mode allows for debugging various features of the program, this mode can be accessed by clicking on the version at the bottom right of the application, it will then appear on the menu.
+
+## Usage of the source code
 
 - Under 'Clone or Download', Download and extract this Git and run 'MathsQuestionGenerator.sln' with Visual Studio.
 - Alternatively, under 'Clone or Download' press 'Open in Visual Studio'.
 
 //TODO - Complete this section.
 
-# Changelog
+## Changelog
 
 |---| 1.0.0.0 |---|
 
