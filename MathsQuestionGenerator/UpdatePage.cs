@@ -150,30 +150,20 @@ namespace MathsQuestionGenerator
             int[] latestServerVer = ToIntArray(getLatestVersion(), '.');
             int[] currentAppVer = ToIntArray(getVersionInfo(true), '.');
 
-            if (getLatestVersion() == "0.0.0.0")
-            {
+            if (getLatestVersion() == "0.0.0.0" || getLatestVersion() == "-1.-1.-1.-1")
                 return false;
-            }
             else if (latestServerVer[0] > currentAppVer[0])
-            {
                 return true;
-            }
-            else if (latestServerVer[1] > currentAppVer[1])
-            {
+            else if (latestServerVer[1] > currentAppVer[1] && latestServerVer[0] == currentAppVer[0])
                 return true;
-            }
-            else if (latestServerVer[2] > currentAppVer[2])
-            {
+            else if (latestServerVer[2] > currentAppVer[2] && latestServerVer[1] == currentAppVer[1] && latestServerVer[0] == currentAppVer[0])
                 return true;
-            }
-            else if (latestServerVer[3] > currentAppVer[3])
-            {
+            else if (latestServerVer[3] > currentAppVer[3] && latestServerVer[2] == currentAppVer[2] && latestServerVer[1] == currentAppVer[1] && latestServerVer[0] == currentAppVer[0])
                 return true;
-            }
+            else if (latestServerVer[0] == currentAppVer[0] && latestServerVer[1] == currentAppVer[1] && latestServerVer[2] == currentAppVer[2] && latestServerVer[3] == currentAppVer[3] && isDebugBuild())
+                return true;
             else
-            {
                 return false;
-            }
         }
         //Used to determine if the application version is newer than the 'latest' version on the build server.
         public bool isAppNewer()
@@ -183,12 +173,14 @@ namespace MathsQuestionGenerator
 
             if (latestServerVer[0] < currentAppVer[0])
                 return true;
-            else if (latestServerVer[1] < currentAppVer[1])
+            else if (latestServerVer[1] < currentAppVer[1] && latestServerVer[0] == currentAppVer[0])
                 return true;
-            else if (latestServerVer[2] < currentAppVer[2])
+            else if (latestServerVer[2] < currentAppVer[2] && latestServerVer[1] == currentAppVer[1] && latestServerVer[0] == currentAppVer[0])
                 return true;
-            else if (latestServerVer[3] < currentAppVer[3])
+            else if (latestServerVer[3] < currentAppVer[3] && latestServerVer[2] == currentAppVer[2] && latestServerVer[1] == currentAppVer[1] && latestServerVer[0] == currentAppVer[0])
                 return true;
+            else if (latestServerVer[0] == currentAppVer[0] && latestServerVer[1] == currentAppVer[1] && latestServerVer[2] == currentAppVer[2] && latestServerVer[3] == currentAppVer[3] && isDebugBuild())
+                return false;
             else
                 return false;
         }
