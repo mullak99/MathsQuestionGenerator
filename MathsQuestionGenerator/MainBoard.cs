@@ -28,12 +28,13 @@ namespace MathsQuestionGenerator
         public MainBoard()
         {
             InitializeComponent();
+            doParamChecks(); //Checks which launch parameters are used and does actions depeding on them.
             versionLabel.Text = update.getVersionInfo(); //Sets version label to the file version.
             lockQuestions(true, true); //Locks (Hides) the four question group boxes and shows the infoText label.
             setActionButton(2); //Sets the 'Submit' button to display 'Start'.
             console.writeToConsole("Initialising complete!"); //Writes to the console to show its current state for debugging purposes.
-            update.checkForUpdate();
-            consoleUpdateInfo();
+            update.checkForUpdate(); //Checks for an application update.
+            consoleUpdateInfo(); //Writes update information to the console.
         }
         //Sets the difficulty of the test, and resets the board.
         public void setDifficulty(int difficulty, bool doReset = true, bool resetStats = false)
@@ -84,12 +85,14 @@ namespace MathsQuestionGenerator
         {
             if (update.detailedUpdateInfo() == "LATESTVERSION")
                 console.writeToConsole("You are on the latest version! (v" + update.getLatestVersion() + ").");
+            else if (update.detailedUpdateInfo() == "OFFLINEMODE")
+                console.writeToConsole("You have launched MQG in offline mode!", 2);
             else if (update.detailedUpdateInfo() == "APPNEWER")
-                console.writeToConsole("You are on a version newer than the public version. (" + update.getVersionInfo() + ").");
+                console.writeToConsole("You are on a version newer than the public version. (" + update.getVersionInfo() + ").", 1);
             else if (update.detailedUpdateInfo() == "SERVERERROR")
                 console.writeToConsole("Could not connect to the update server. Try again later!", 2);
             else
-                console.writeToConsole("You are on an out of date version (" + update.getVersionInfo() + "). Consider updating to the latest version (v" + update.getLatestVersion() + ").");
+                console.writeToConsole("You are on an out of date version (" + update.getVersionInfo() + "). Consider updating to the latest version (v" + update.getLatestVersion() + ").", 2);
 
         }
         //Checks the difficulty against the presets and checks them under the 'File > Difficulty' menu.
@@ -219,6 +222,20 @@ namespace MathsQuestionGenerator
                 ms10ToolStripMenuItem.Checked = false;
                 ms1ToolStripMenuItem.Checked = false;
             }
+        }
+        //Checks if certain parameters are enabled
+        private void doParamChecks()
+        {
+            
+            if (Program.isOfflineMode())
+                console.writeToConsole("Launch Parameter 'offlineMode' has been used.", 1);
+
+            if (Program.isEasterEgg() && update.checkIfOnline())
+            {
+                console.writeToConsole("Launch Parameter 'lord' has been used. PRAISE GABEN!", 1);
+                pictureBox.ImageLocation = "http://gaben.mullak99.co.uk/horizontal/random.php";
+            }
+
         }
         //Manually override the timer tick rate/
         private void setTickRate(int ms)
@@ -807,6 +824,8 @@ namespace MathsQuestionGenerator
         {
             if(developerToolStripMenuItem.Visible)
             {
+                if(globalDifficulty > 100000)
+                    console.writeToConsole("Answers may be autofilled as to-the-powers (E+<Number>) on high difficulties!", 1);
                 console.writeToConsole("Answers have been autofilled!", 1);
                 guess1.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[0, 3]), 2));
                 guess2.Text = Convert.ToString(Math.Round(Convert.ToDouble(EquationNumbers[1, 3]), 2));

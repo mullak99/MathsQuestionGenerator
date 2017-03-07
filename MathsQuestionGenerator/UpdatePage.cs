@@ -14,10 +14,10 @@ namespace MathsQuestionGenerator
 {
     public partial class UpdatePage : Form
     {
-
         bool updateIgnored = false;
         bool fakeVersionToggle = false;
         bool fakeServerError = false;
+        bool isOnline = true;
         string fakeVersion = "";
 
         public UpdatePage()
@@ -44,22 +44,33 @@ namespace MathsQuestionGenerator
             if (detailedUpdateInfo() == "LATESTVERSION")
             {
                 briefDesc.Text = "You are using the latest version of MQG.";
+                isOnline = true;
+                downloadUpdate.Visible = false;
+            }
+            else if (detailedUpdateInfo() == "OFFLINEMODE")
+            {
+                briefDesc.Text = "You have launched MQG in offline mode. MQG will not attempt to connect to the internet in any way.";
+                latestVer.Text = "OFFLINE MODE!";
+                isOnline = false;
                 downloadUpdate.Visible = false;
             }
             else if (detailedUpdateInfo() == "APPNEWER")
             {
                 briefDesc.Text = "You are using a version of MQG that is newer than the public version. This may be due to you using a developer version, a beta or a pre-release version.";
+                isOnline = true;
                 downloadUpdate.Visible = false;
             }
             else if (detailedUpdateInfo() == "SERVERERROR")
             {
                 briefDesc.Text = "Unable to connect to the update server. Please check your internet connection or try again later.";
                 latestVer.Text = "SERVER ERROR!";
+                isOnline = false;
                 downloadUpdate.Visible = false;
             }
             else
             {
                 briefDesc.Text = "You are using an out-of-date version of MQG.\nIt is recommended that you update to ensure you have the latest features and bugfixes.";
+                isOnline = true;
                 downloadUpdate.Visible = true;
 
                 if(!updateIgnored)
@@ -70,6 +81,12 @@ namespace MathsQuestionGenerator
                         updateIgnored = true;
                 }
             }
+        }
+        //Perform a simple online check
+        public bool checkIfOnline()
+        {
+            checkForUpdate();
+            return isOnline;
         }
         //Overrides the Windows ('X') to hide the form instead of disposing it.
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -125,23 +142,29 @@ namespace MathsQuestionGenerator
         //Gets the latest version information from the build server.
         public string getLatestVersion()
         {
-            try
+            if (Program.isOfflineMode())
+                return "-1.-1.-1.-1";
+            else
             {
-                WebClient client = new WebClient();
+                try
+                {
+                    WebClient client = new WebClient();
 
-                string url = "http://builds.mullak99.co.uk/MathsQuestionGenerator/checkupdate.php";
+                    string url = "http://builds.mullak99.co.uk/MathsQuestionGenerator/checkupdate.php";
 
-                byte[] html = client.DownloadData(url);
-                UTF8Encoding utf = new UTF8Encoding();
-                if (String.IsNullOrEmpty(utf.GetString(html)) || fakeServerError)
+                    byte[] html = client.DownloadData(url);
+                    UTF8Encoding utf = new UTF8Encoding();
+                    if (String.IsNullOrEmpty(utf.GetString(html)) || fakeServerError)
+                        return "0.0.0.0";
+                    else
+                        return utf.GetString(html);
+                }
+                catch (Exception e)
+                {
                     return "0.0.0.0";
-                else
-                    return utf.GetString(html);
+                }
             }
-            catch (Exception e)
-            {
-                return "0.0.0.0";
-            }
+            
             
         }
         //Used to compare the application version and the latest version from the build server.
@@ -191,6 +214,8 @@ namespace MathsQuestionGenerator
                 return getLatestVersion();
             else if (getLatestVersion() == "0.0.0.0")
                 return "SERVERERROR";
+            else if (getLatestVersion() == "-1.-1.-1.-1")
+                return "OFFLINEMODE";
             else if (isAppNewer())
                 return "APPNEWER";
             else

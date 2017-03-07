@@ -107,4 +107,3 @@ Developer Mode allows for debugging various features of the program, this mode c
 |---| 1.0.3.3 |---|
 
 - Fixed the broken updater (Example: Version v1.0.0.1 would be classified as newer than v1.0.1.0)
-

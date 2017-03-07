@@ -70,6 +70,7 @@
             this.futureVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.latestVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.v1000ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serverErrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceStartSplashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,16 +113,18 @@
             this.mediumStartSplash = new System.Windows.Forms.RadioButton();
             this.hardStartSplash = new System.Windows.Forms.RadioButton();
             this.extremeStartSplash = new System.Windows.Forms.RadioButton();
-            this.serverErrorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.questionBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.questionBox2.SuspendLayout();
             this.questionBox3.SuspendLayout();
             this.questionBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // questionBox1
             // 
+            this.questionBox1.BackColor = System.Drawing.Color.Transparent;
             this.questionBox1.Controls.Add(this.answer1);
             this.questionBox1.Controls.Add(this.label14);
             this.questionBox1.Controls.Add(this.guess1);
@@ -135,6 +138,7 @@
             // 
             // answer1
             // 
+            this.answer1.BackColor = System.Drawing.Color.Transparent;
             this.answer1.ForeColor = System.Drawing.Color.White;
             this.answer1.Location = new System.Drawing.Point(495, 16);
             this.answer1.Name = "answer1";
@@ -146,6 +150,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
             this.label14.Location = new System.Drawing.Point(432, 22);
@@ -170,6 +175,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(253, 16);
@@ -181,6 +187,7 @@
             // question1
             // 
             this.question1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.question1.BackColor = System.Drawing.Color.Transparent;
             this.question1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.question1.ForeColor = System.Drawing.Color.White;
             this.question1.Location = new System.Drawing.Point(5, 16);
@@ -519,6 +526,16 @@
             this.v1000ToolStripMenuItem.Text = "Initial Version";
             this.v1000ToolStripMenuItem.Click += new System.EventHandler(this.v1000ToolStripMenuItem_Click);
             // 
+            // serverErrorToolStripMenuItem
+            // 
+            this.serverErrorToolStripMenuItem.Name = "serverErrorToolStripMenuItem";
+            this.serverErrorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D5)));
+            this.serverErrorToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.serverErrorToolStripMenuItem.Text = "Server Error";
+            this.serverErrorToolStripMenuItem.Click += new System.EventHandler(this.serverErrorToolStripMenuItem_Click);
+            // 
             // forceStartSplashToolStripMenuItem
             // 
             this.forceStartSplashToolStripMenuItem.Name = "forceStartSplashToolStripMenuItem";
@@ -580,6 +597,7 @@
             // 
             // questionBox2
             // 
+            this.questionBox2.BackColor = System.Drawing.Color.Transparent;
             this.questionBox2.Controls.Add(this.answer2);
             this.questionBox2.Controls.Add(this.label2);
             this.questionBox2.Controls.Add(this.guess2);
@@ -593,6 +611,7 @@
             // 
             // answer2
             // 
+            this.answer2.BackColor = System.Drawing.Color.Transparent;
             this.answer2.ForeColor = System.Drawing.Color.White;
             this.answer2.Location = new System.Drawing.Point(495, 16);
             this.answer2.Name = "answer2";
@@ -604,6 +623,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(432, 22);
@@ -628,6 +648,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(253, 16);
@@ -639,6 +660,7 @@
             // question2
             // 
             this.question2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.question2.BackColor = System.Drawing.Color.Transparent;
             this.question2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.question2.ForeColor = System.Drawing.Color.White;
             this.question2.Location = new System.Drawing.Point(6, 16);
@@ -650,6 +672,7 @@
             // 
             // questionBox3
             // 
+            this.questionBox3.BackColor = System.Drawing.Color.Transparent;
             this.questionBox3.Controls.Add(this.answer3);
             this.questionBox3.Controls.Add(this.label9);
             this.questionBox3.Controls.Add(this.guess3);
@@ -663,6 +686,7 @@
             // 
             // answer3
             // 
+            this.answer3.BackColor = System.Drawing.Color.Transparent;
             this.answer3.ForeColor = System.Drawing.Color.White;
             this.answer3.Location = new System.Drawing.Point(495, 16);
             this.answer3.Name = "answer3";
@@ -674,6 +698,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(432, 22);
@@ -698,6 +723,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Location = new System.Drawing.Point(253, 16);
@@ -709,6 +735,7 @@
             // question3
             // 
             this.question3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.question3.BackColor = System.Drawing.Color.Transparent;
             this.question3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.question3.ForeColor = System.Drawing.Color.White;
             this.question3.Location = new System.Drawing.Point(5, 16);
@@ -720,6 +747,7 @@
             // 
             // questionBox4
             // 
+            this.questionBox4.BackColor = System.Drawing.Color.Transparent;
             this.questionBox4.Controls.Add(this.answer4);
             this.questionBox4.Controls.Add(this.label16);
             this.questionBox4.Controls.Add(this.guess4);
@@ -733,6 +761,7 @@
             // 
             // answer4
             // 
+            this.answer4.BackColor = System.Drawing.Color.Transparent;
             this.answer4.ForeColor = System.Drawing.Color.White;
             this.answer4.Location = new System.Drawing.Point(495, 16);
             this.answer4.Name = "answer4";
@@ -744,6 +773,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.White;
             this.label16.Location = new System.Drawing.Point(432, 22);
@@ -768,6 +798,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.White;
             this.label17.Location = new System.Drawing.Point(253, 16);
@@ -779,6 +810,7 @@
             // question4
             // 
             this.question4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.question4.BackColor = System.Drawing.Color.Transparent;
             this.question4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.question4.ForeColor = System.Drawing.Color.White;
             this.question4.Location = new System.Drawing.Point(5, 16);
@@ -807,6 +839,7 @@
             // correctNum
             // 
             this.correctNum.AutoSize = true;
+            this.correctNum.BackColor = System.Drawing.Color.Transparent;
             this.correctNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.correctNum.ForeColor = System.Drawing.Color.White;
             this.correctNum.Location = new System.Drawing.Point(349, 333);
@@ -817,6 +850,7 @@
             // 
             // versionLabel
             // 
+            this.versionLabel.BackColor = System.Drawing.Color.Transparent;
             this.versionLabel.ForeColor = System.Drawing.Color.White;
             this.versionLabel.Location = new System.Drawing.Point(516, 407);
             this.versionLabel.Name = "versionLabel";
@@ -829,6 +863,7 @@
             // difficultyLabel
             // 
             this.difficultyLabel.AutoSize = true;
+            this.difficultyLabel.BackColor = System.Drawing.Color.Transparent;
             this.difficultyLabel.ForeColor = System.Drawing.Color.White;
             this.difficultyLabel.Location = new System.Drawing.Point(479, 337);
             this.difficultyLabel.Name = "difficultyLabel";
@@ -854,6 +889,7 @@
             // noteLabel
             // 
             this.noteLabel.AutoSize = true;
+            this.noteLabel.BackColor = System.Drawing.Color.Transparent;
             this.noteLabel.ForeColor = System.Drawing.Color.White;
             this.noteLabel.Location = new System.Drawing.Point(12, 335);
             this.noteLabel.Name = "noteLabel";
@@ -864,6 +900,7 @@
             // 
             // correctNumSession
             // 
+            this.correctNumSession.BackColor = System.Drawing.Color.Transparent;
             this.correctNumSession.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.correctNumSession.ForeColor = System.Drawing.Color.White;
             this.correctNumSession.Location = new System.Drawing.Point(299, 364);
@@ -875,6 +912,7 @@
             // 
             // copyrightNotice
             // 
+            this.copyrightNotice.BackColor = System.Drawing.Color.Transparent;
             this.copyrightNotice.ForeColor = System.Drawing.Color.White;
             this.copyrightNotice.Location = new System.Drawing.Point(9, 407);
             this.copyrightNotice.Name = "copyrightNotice";
@@ -886,6 +924,7 @@
             // timerLabel
             // 
             this.timerLabel.AutoSize = true;
+            this.timerLabel.BackColor = System.Drawing.Color.Transparent;
             this.timerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timerLabel.ForeColor = System.Drawing.Color.White;
             this.timerLabel.Location = new System.Drawing.Point(12, 25);
@@ -897,6 +936,7 @@
             // 
             // timeLeft
             // 
+            this.timeLeft.BackColor = System.Drawing.Color.Transparent;
             this.timeLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.timeLeft.ForeColor = System.Drawing.Color.White;
             this.timeLeft.Location = new System.Drawing.Point(148, 25);
@@ -923,6 +963,7 @@
             // 
             // infoText
             // 
+            this.infoText.BackColor = System.Drawing.Color.Transparent;
             this.infoText.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoText.ForeColor = System.Drawing.Color.White;
             this.infoText.Location = new System.Drawing.Point(12, 166);
@@ -940,6 +981,7 @@
             // easyStartSplash
             // 
             this.easyStartSplash.AutoSize = true;
+            this.easyStartSplash.BackColor = System.Drawing.Color.Transparent;
             this.easyStartSplash.Checked = true;
             this.easyStartSplash.ForeColor = System.Drawing.Color.White;
             this.easyStartSplash.Location = new System.Drawing.Point(115, 235);
@@ -948,54 +990,56 @@
             this.easyStartSplash.TabIndex = 20;
             this.easyStartSplash.TabStop = true;
             this.easyStartSplash.Text = "Easy";
-            this.easyStartSplash.UseVisualStyleBackColor = true;
+            this.easyStartSplash.UseVisualStyleBackColor = false;
             this.easyStartSplash.Click += new System.EventHandler(this.easyStartSplash_Checked);
             // 
             // mediumStartSplash
             // 
             this.mediumStartSplash.AutoSize = true;
+            this.mediumStartSplash.BackColor = System.Drawing.Color.Transparent;
             this.mediumStartSplash.ForeColor = System.Drawing.Color.White;
             this.mediumStartSplash.Location = new System.Drawing.Point(214, 235);
             this.mediumStartSplash.Name = "mediumStartSplash";
             this.mediumStartSplash.Size = new System.Drawing.Size(62, 17);
             this.mediumStartSplash.TabIndex = 21;
             this.mediumStartSplash.Text = "Medium";
-            this.mediumStartSplash.UseVisualStyleBackColor = true;
+            this.mediumStartSplash.UseVisualStyleBackColor = false;
             this.mediumStartSplash.Click += new System.EventHandler(this.mediumStartSplash_Checked);
             // 
             // hardStartSplash
             // 
             this.hardStartSplash.AutoSize = true;
+            this.hardStartSplash.BackColor = System.Drawing.Color.Transparent;
             this.hardStartSplash.ForeColor = System.Drawing.Color.White;
             this.hardStartSplash.Location = new System.Drawing.Point(331, 235);
             this.hardStartSplash.Name = "hardStartSplash";
             this.hardStartSplash.Size = new System.Drawing.Size(48, 17);
             this.hardStartSplash.TabIndex = 22;
             this.hardStartSplash.Text = "Hard";
-            this.hardStartSplash.UseVisualStyleBackColor = true;
+            this.hardStartSplash.UseVisualStyleBackColor = false;
             this.hardStartSplash.Click += new System.EventHandler(this.hardStartSplash_Checked);
             // 
             // extremeStartSplash
             // 
             this.extremeStartSplash.AutoSize = true;
+            this.extremeStartSplash.BackColor = System.Drawing.Color.Transparent;
             this.extremeStartSplash.ForeColor = System.Drawing.Color.White;
             this.extremeStartSplash.Location = new System.Drawing.Point(431, 236);
             this.extremeStartSplash.Name = "extremeStartSplash";
             this.extremeStartSplash.Size = new System.Drawing.Size(63, 17);
             this.extremeStartSplash.TabIndex = 23;
             this.extremeStartSplash.Text = "Extreme";
-            this.extremeStartSplash.UseVisualStyleBackColor = true;
+            this.extremeStartSplash.UseVisualStyleBackColor = false;
             this.extremeStartSplash.Click += new System.EventHandler(this.extremeStartSplash_Checked);
             // 
-            // serverErrorToolStripMenuItem
+            // pictureBox
             // 
-            this.serverErrorToolStripMenuItem.Name = "serverErrorToolStripMenuItem";
-            this.serverErrorToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.D5)));
-            this.serverErrorToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
-            this.serverErrorToolStripMenuItem.Text = "Server Error";
-            this.serverErrorToolStripMenuItem.Click += new System.EventHandler(this.serverErrorToolStripMenuItem_Click);
+            this.pictureBox.Location = new System.Drawing.Point(0, 25);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(613, 398);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 24;
+            this.pictureBox.TabStop = false;
             // 
             // MainBoard
             // 
@@ -1025,6 +1069,7 @@
             this.Controls.Add(this.questionBox1);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.infoText);
+            this.Controls.Add(this.pictureBox);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1042,6 +1087,7 @@
             this.questionBox3.PerformLayout();
             this.questionBox4.ResumeLayout(false);
             this.questionBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1132,6 +1178,7 @@
         private System.Windows.Forms.ToolStripMenuItem v1000ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem futureVersionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverErrorToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }
 

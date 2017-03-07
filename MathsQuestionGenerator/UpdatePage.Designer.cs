@@ -98,7 +98,7 @@
             // 
             this.latestVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.latestVer.ForeColor = System.Drawing.Color.White;
-            this.latestVer.Location = new System.Drawing.Point(256, 69);
+            this.latestVer.Location = new System.Drawing.Point(262, 69);
             this.latestVer.Name = "latestVer";
             this.latestVer.Size = new System.Drawing.Size(108, 15);
             this.latestVer.TabIndex = 6;
