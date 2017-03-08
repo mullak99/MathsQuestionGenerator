@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.IO.Compression;
 
 namespace MathsQuestionGenerator
 {
@@ -18,6 +20,7 @@ namespace MathsQuestionGenerator
         bool fakeVersionToggle = false;
         bool fakeServerError = false;
         bool isOnline = true;
+        public bool doUpdate = false;
         string fakeVersion = "";
 
         public UpdatePage()
@@ -226,10 +229,54 @@ namespace MathsQuestionGenerator
         {
             checkForUpdate();
         }
+        public static void selfUpdate()
+        {
+            if (checkServerConnection())
+                try
+                {
+                    File.Delete("MQGUpdater.exe");
+                    File.Delete("updater.zip");
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile(new Uri("http://builds.mullak99.co.uk/MathsQuestionGenerator/updater/latest"), "updater.zip");
+                    ZipFile.ExtractToDirectory("updater.zip", Directory.GetCurrentDirectory() + "..");
+                    File.Delete("updater.zip");
+                    Process.Start("MQGUpdater.exe");
+                    Environment.Exit(0);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    if (MessageBox.Show("The MQG Update application is still open.\nPlease close MQG Update.\n\nDo you want to retry?", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        selfUpdate();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString(), "Error");
+                    File.Delete("MQGUpdate.exe");
+                    File.Delete("updater.zip");
+                }
+            else
+            {
+                File.Delete("updater.zip");
+            }
+        }
+
+        public static bool checkServerConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (var stream = client.OpenRead("http://mullak99.co.uk/"))
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         //Download the latest version from the build server.
         private void downloadUpdate_Click(object sender, EventArgs e)
         {
-            Process.Start("http://builds.mullak99.co.uk/MathsQuestionGenerator/latest");
+            selfUpdate();
         }
     }
 }

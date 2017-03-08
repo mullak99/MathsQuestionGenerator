@@ -15,6 +15,7 @@ namespace MathsQuestionGenerator
     {
         private bool logWrites = true;
         private bool loggedDevMode = false;
+        private string devModeMessage = "Launch Parameter 'developerMode' has been used.Developer Mode has been enabled!";
 
         public DebugConsole()
         {
@@ -33,7 +34,7 @@ namespace MathsQuestionGenerator
         //Writes the text string to the developer/debugging console, along with the appropriate colour and prefix depending on log level.
         public void writeToConsole(string text, int logLevel = 0)
         {
-            if (text != "Developer Mode has been enabled!" || !loggedDevMode)
+            if (text != devModeMessage || !loggedDevMode)
                 if (logLevel >= 3) //Error log level. Used for crashes or other extreme issues.
                 {
                     AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] [ERROR] " + text + Environment.NewLine, Color.Red); //Appends the 'text' text to the textbox after the time and '[ERROR]', while using Red text.
@@ -49,7 +50,7 @@ namespace MathsQuestionGenerator
                 else if (logWrites) //Default log level. Used to detail what is happening within the code.
                     AppendText(console, "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] " + text + Environment.NewLine, Color.Green); //Appends the 'text' text to the textbox after the time, while using Green text.
             
-            if (text == "Developer Mode has been enabled!")
+            if (text == devModeMessage)
                 loggedDevMode = true;
         }
         //Ensures that only logs with level 1 or greater are written to the console.
@@ -58,7 +59,7 @@ namespace MathsQuestionGenerator
             logWrites = !enabled;
         }
         //Saves all text within the textbox to a file, named with the date and time.
-        private void saveLogFile() 
+        public void saveLogFile() 
         {
             File.WriteAllText(DateTime.Today.ToString("dd-MM-yy") + "-" + DateTime.Now.ToString("hh-mm-ss") + "-" + DateTime.Now.ToString("tt") + "-MQG-v" + Application.ProductVersion + ".log", console.Text);
         }
