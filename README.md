@@ -125,4 +125,4 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 - Aligned the Latest Version and Current Version numbers
 - Compacted the Check for Update code
 - Removed the developer mode 'secret' toggle
-- Fixed the total correct this session being increased early.
+- Fixed the total correct this session being increased early
