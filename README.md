@@ -18,7 +18,7 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 
 ### Developer Mode
 
-Developer Mode allows for debugging various features of the program, this mode can be accessed by clicking on the version at the bottom right of the application, it will then appear on the menu.
+~~Developer Mode allows for debugging various features of the program, this mode can be accessed by clicking on the version at the bottom right of the application, it will then appear on the menu.~~
 
 //TODO - Complete this section.
 
@@ -107,3 +107,22 @@ Developer Mode allows for debugging various features of the program, this mode c
 |---| 1.0.3.3 |---|
 
 - Fixed the broken updater (Example: Version v1.0.0.1 would be classified as newer than v1.0.1.0)
+
+|---| 1.0.4.0 |---|
+
+- Added a full auto-updater
+- Added an Offline Mode
+- Added a simple saving of session statistics
+- Added the ability to use launch parameters
+- Added a launch parameter to open into Offline Mode
+- Added a launch parameter to open enable an easter egg
+- Added a launch parameter to enable developer mode
+- Added a warning to Auto-Filling Answers above 100000 difficulty
+- Added an option to export a log file from normal user mode
+- Added a developer option to toggle offline mode
+- Changed the Server Error console message to a WARN status
+- Changing difficulty now resets statistics
+- Alligned the Latest Version and Current Version numbers
+- Compacted the Check for Update code
+- Removed the developer mode 'secret' toggle
+- Fixed the total correct this session being increased early.
