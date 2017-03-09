@@ -8,17 +8,27 @@ An application for generating pseudo-random maths questions.
 
 ## Download
 
-The Latest Releases can always be found at either:
+### Installer
 
-http://github.com/mullak99/MathsQuestionGenerator/releases/latest
-or
-http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
+//TODO - Currently in development.
+
+### Portable
+
+| Location  | Download |
+| :-------------: | :-------------: |
+| Personal Server  | [Direct](http://builds.mullak99.co.uk/MathsQuestionGenerator/latest) |
+| Github Releases  | [Direct](http://github.com/mullak99/MathsQuestionGenerator/releases/latest) |
 
 ## Application Usage
 
-### Developer Mode
+### Launch Parameters
 
-~~Developer Mode allows for debugging various features of the program, this mode can be accessed by clicking on the version at the bottom right of the application, it will then appear on the menu.~~
+Launch Parameters can be used to launch the program with tweaked settings or features. They can be used by running the program from command prompt using `"Maths Question Generator.exe" --developer`, creating a shortcut with the parameter at the end of the Target field or by creating a `launchParams.cfg` in the config folder. Here's a list of current launch parameters:
+
+- `--offline` or `-o`: Launches the program in Offline Mode (All internet related code disabled).
+- `--developer` or `-d`: Launches the program in developer mode, this allows access to debugging tools.
+- `--cleanUpdates` or `-c`: Performs a clean update when an update is availible, best used in the config file or shortcut.
+- `--update` or `-u`: Forcibly downloads and installs the latest version.
 
 //TODO - Complete this section.
 
