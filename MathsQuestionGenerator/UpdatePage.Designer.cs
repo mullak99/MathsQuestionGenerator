@@ -137,7 +137,7 @@
             this.downloadUpdate.Name = "downloadUpdate";
             this.downloadUpdate.Size = new System.Drawing.Size(129, 32);
             this.downloadUpdate.TabIndex = 9;
-            this.downloadUpdate.Text = "Download Update";
+            this.downloadUpdate.Text = "Update MQG";
             this.downloadUpdate.UseVisualStyleBackColor = false;
             this.downloadUpdate.Visible = false;
             this.downloadUpdate.Click += new System.EventHandler(this.downloadUpdate_Click);

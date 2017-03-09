@@ -20,7 +20,6 @@ namespace MathsQuestionGenerator
         bool fakeVersionToggle = false;
         bool fakeServerError = false;
         bool isOnline = true;
-        public bool doUpdate = false;
         string fakeVersion = "";
 
         public UpdatePage()
@@ -78,7 +77,7 @@ namespace MathsQuestionGenerator
 
                 if(!updateIgnored)
                 {
-                    if (MessageBox.Show("An update is available!\n\nDo you want to download it?", "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("A new version is availible!\n\nDo you want to update to '" + latestVer.Text + "'?", "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         downloadUpdate_Click(null, null);
                     else
                         updateIgnored = true;
@@ -229,18 +228,21 @@ namespace MathsQuestionGenerator
         {
             checkForUpdate();
         }
-        public static void selfUpdate()
+        public static void selfUpdate(bool doCleanUpdate = false)
         {
             if (checkServerConnection())
                 try
                 {
                     File.Delete("MQGUpdater.exe");
-                    File.Delete("updater.zip");
+                    File.Delete("updater.pack");
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFile(new Uri("http://builds.mullak99.co.uk/MathsQuestionGenerator/updater/latest"), "updater.zip");
-                    ZipFile.ExtractToDirectory("updater.zip", Directory.GetCurrentDirectory() + "..");
-                    File.Delete("updater.zip");
-                    Process.Start("MQGUpdater.exe");
+                    webClient.DownloadFile(new Uri("http://builds.mullak99.co.uk/MathsQuestionGenerator/updater/latest"), "updater.pack");
+                    ZipFile.ExtractToDirectory("updater.pack", Directory.GetCurrentDirectory() + "..");
+                    File.Delete("updater.pack");
+                    if (doCleanUpdate)
+                        Process.Start(Path.Combine("MQGUpdater.exe" + " -c"));
+                    else
+                        Process.Start("MQGUpdater.exe");
                     Environment.Exit(0);
                 }
                 catch (UnauthorizedAccessException)
@@ -252,11 +254,11 @@ namespace MathsQuestionGenerator
                 {
                     MessageBox.Show(e.ToString(), "Error");
                     File.Delete("MQGUpdate.exe");
-                    File.Delete("updater.zip");
+                    File.Delete("updater.pack");
                 }
             else
             {
-                File.Delete("updater.zip");
+                File.Delete("updater.pack");
             }
         }
 
@@ -276,7 +278,7 @@ namespace MathsQuestionGenerator
         //Download the latest version from the build server.
         private void downloadUpdate_Click(object sender, EventArgs e)
         {
-            selfUpdate();
+            selfUpdate(Program.doCleanUpdates());
         }
     }
 }

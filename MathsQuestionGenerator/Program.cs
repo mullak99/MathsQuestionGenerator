@@ -20,13 +20,13 @@ namespace MathsQuestionGenerator
         public static bool forceOfflineMode = false;
         static bool easterEgg = false;
         static bool developerMode = false;
-        public static bool updateAvailible = false;
+        static bool cleanUpdates = false;
 
         [STAThread]
         static void Main(string[] args)
         {
-            if (File.Exists("launchParams.cfg"))
-                args = File.ReadAllLines("launchParams.cfg");
+            if (File.Exists("config/launchParams.cfg"))
+                args = File.ReadAllLines("config/launchParams.cfg");
 
             for (int i = 0; i < args.Length; i++)
             { 
@@ -36,6 +36,11 @@ namespace MathsQuestionGenerator
                     easterEgg = true;
                 if (args[i].Equals("-developer") || args[i].Equals("--developer") || args[i].Equals("-d") || args[i].Equals("--d"))
                     developerMode = true;
+                if (args[i].Equals("-cleanUpdates") || args[i].Equals("--cleanUpdates") || args[i].Equals("-c") || args[i].Equals("--c"))
+                    cleanUpdates = true;
+                if (args[i].Equals("-update") || args[i].Equals("--update") || args[i].Equals("-u") || args[i].Equals("--u"))
+                    UpdatePage.selfUpdate(cleanUpdates);
+
             }
 
             Application.EnableVisualStyles();
@@ -56,6 +61,11 @@ namespace MathsQuestionGenerator
         public static bool isDevMode()
         {
             return developerMode;
+        }
+
+        public static bool doCleanUpdates()
+        {
+            return cleanUpdates;
         }
     }
 }

@@ -126,3 +126,12 @@ http://builds.mullak99.co.uk/MathsQuestionGenerator/latest
 - Compacted the Check for Update code
 - Removed the developer mode 'secret' toggle
 - Fixed the total correct this session being increased early
+
+|---| 1.0.4.1 |---|
+
+- Added a launch parameter to do clean updates
+- Changed the 'Download Update' button text to 'Update MQG'
+- Changed the Update popup message to reflect the 'Update MQG' button text
+- Added an optional config folder, this will be used more at a later date
+- Moved 'launchParams.cfg' load location to the config folder
+- Fixed Average Time counter when at difficulties greater than Medium (20)

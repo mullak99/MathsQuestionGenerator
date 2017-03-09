@@ -49,7 +49,7 @@ namespace MathsQuestionGenerator
             else if (difficulty == 20)
                 stats[3] = "Extreme";
             else
-                stats[1] = "Custom (" + difficulty + ")";
+                stats[3] = "Custom (" + difficulty + ")";
 
             return stats;
         }

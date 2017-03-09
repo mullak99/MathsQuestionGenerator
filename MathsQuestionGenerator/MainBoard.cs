@@ -17,14 +17,13 @@ namespace MathsQuestionGenerator
     {
         DebugConsole console = new DebugConsole(); //Calls the 'DebugConsole' class and defines it as 'console' for later use.
         AboutPage about = new AboutPage(); //Calls the 'AboutPage' class and defines it as 'about' for later use.
-        UpdatePage update = new UpdatePage();
-        Statistics stats = new Statistics();
+        UpdatePage update = new UpdatePage(); //Calls the 'UpdatePage' class and defines it as 'update' for later use.
+        Statistics stats = new Statistics(); //Calls the 'Statistics' class and defines it as 'stats' for later use.
         private float[,] EquationNumbers = new float[4, 4]; //Creates a float array of 4*4, this is used to store the randomised numbers that will be used within the equations as well as the symbol and answer for the equations.
         private int globalDifficulty = 10; //Creates the integer for the difficulty of the equations generated, this is set to '10' (Easy) by default and can be changed within the game.
         private int correctSession = 0; //Creates the integer for the correct number of questions this session.
         private int maxSession = 4; //Creates the integer for the amount of questions generated, with the 'correctSession' variable this allows for the user to tell the percentage of questions correct.
         private int timerStartTime; //The initial timer second count.
-        private int initialTimerTime; //Logs the initial time of the timer when set.
         private double avgTimeTaken; //Average time to answer questions this session.
         List<int> timeTaken = new List<int>(); //Stores the time taken for all questions this session.
         TimeSpan timer; //Defines 'timer'.
@@ -426,7 +425,6 @@ namespace MathsQuestionGenerator
             console.writeToConsole("Set timer to '" + seconds + "' seconds.");
             timerStartTime = seconds;
             timer = TimeSpan.FromSeconds(seconds);
-            initialTimerTime = seconds;
             timeProgress.Maximum = seconds;
             timeProgress.Value = timeProgress.Maximum;
 
@@ -630,7 +628,7 @@ namespace MathsQuestionGenerator
             correctNum.Text = numCorrect + "/4";
             correctSession += numCorrect;
             correctNumSession.Text = correctSession + "/" + maxSession;
-            timeTaken.Add(initialTimerTime - Convert.ToInt32(timer.TotalSeconds));
+            timeTaken.Add(timerStartTime - Convert.ToInt32(timer.TotalSeconds));
             avgTimeTaken = timeTaken.Average();
             string[] rawStats = stats.gatherStats(correctSession, maxSession, avgTimeTaken, globalDifficulty);
             averageTimeLabel.Text = "Average Time: " + rawStats[1] + " " + rawStats[2];
