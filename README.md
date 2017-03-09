@@ -23,7 +23,7 @@ An application for generating pseudo-random maths questions.
 
 ### Launch Parameters
 
-Launch Parameters can be used to launch the program with tweaked settings or features. They can be used by running the program from command prompt using `"Maths Question Generator.exe" --developer`, creating a shortcut with the parameter at the end of the Target field or by creating a `launchParams.cfg` in the config folder. Here's a list of current launch parameters:
+Launch Parameters can be used to launch the program with tweaked settings or features. They can be used by running the program from command prompt using `"Maths Question Generator.exe" --<param>`, creating a shortcut with the parameter at the end of the Target field or by creating a `launchParams.cfg` in the config folder. Here's a list of current launch parameters:
 
 - `--offline` or `-o`: Launches the program in Offline Mode (All internet related code disabled).
 - `--developer` or `-d`: Launches the program in developer mode, this allows access to debugging tools.
