@@ -57,8 +57,12 @@ namespace MathsQuestionGenerator
         public void exportStats(int currentCorrect, int maxCorrect, double avgTimeTaken, int difficulty)
         {
             string[] stats = gatherStats(currentCorrect, maxCorrect, avgTimeTaken, difficulty);
+            string statsLocation = "";
 
-            StreamWriter statsTXT = new StreamWriter("Statistics.txt", true);
+            if (Program.isFullInstall())
+                statsLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator");
+
+            StreamWriter statsTXT = new StreamWriter(Path.Combine(statsLocation, "Statistics.txt"), true);
             statsTXT.WriteLine(spacer + Environment.NewLine + DateTime.Today.ToString("dd/MM/yy") + " | " + DateTime.Now.ToString("hh:mm") + DateTime.Now.ToString("tt") + Environment.NewLine + spacer + Environment.NewLine + "Difficulty: " + stats[3] + Environment.NewLine + "Total: " + stats[0] + Environment.NewLine  + "Average Time: " + stats[1] + " " + stats[2] + Environment.NewLine + spacer + Environment.NewLine + Environment.NewLine);
             statsTXT.Close();
         }

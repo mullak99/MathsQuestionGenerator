@@ -61,7 +61,21 @@ namespace MathsQuestionGenerator
         //Saves all text within the textbox to a file, named with the date and time.
         public void saveLogFile() 
         {
-            File.WriteAllText(DateTime.Today.ToString("dd-MM-yy") + "-" + DateTime.Now.ToString("hh-mm-ss") + "-" + DateTime.Now.ToString("tt") + "-MQG-v" + Application.ProductVersion + ".log", console.Text);
+            string logLocation = "";
+
+            if (Program.isFullInstall())
+            {
+                logLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Logs");
+                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Logs"));
+            }
+            else
+            {
+                logLocation = @"\Logs";
+                Directory.CreateDirectory("Logs");
+            }
+                
+
+            File.WriteAllText(Path.Combine(logLocation, DateTime.Today.ToString("dd-MM-yy") + "-" + DateTime.Now.ToString("hh-mm-ss") + "-" + DateTime.Now.ToString("tt") + "-MQG-v" + Application.ProductVersion + ".log"), console.Text);
         }
         //Moves the selection to the end of the textbox and scrolls to the selection.
         public void scroll()

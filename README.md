@@ -145,3 +145,7 @@ Launch Parameters can be used to launch the program with tweaked settings or fea
 - Added an optional config folder, this will be used more at a later date
 - Moved 'launchParams.cfg' load location to the config folder
 - Fixed Average Time counter when at difficulties greater than Medium (20)
+
+|---| 1.0.4.2 |---|
+
+- Added support for full installs
