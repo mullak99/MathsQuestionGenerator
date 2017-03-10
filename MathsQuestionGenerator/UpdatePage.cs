@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Compression;
+using System.Security.Principal;
 
 namespace MathsQuestionGenerator
 {
@@ -230,35 +231,50 @@ namespace MathsQuestionGenerator
         }
         public static void selfUpdate(bool doCleanUpdate = false)
         {
+            TextReader tr = new StreamReader(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Config\installProperties.cfg"));
+            string installDir = tr.ReadLine();
+            tr.Close();
+
             if (checkServerConnection())
                 try
                 {
-                    File.Delete("MQGUpdater.exe");
-                    File.Delete("updater.pack");
+                    File.Delete(Path.Combine(installDir, "MQGUpdater.exe"));
+                    File.Delete(Path.Combine(installDir, "updater.pack"));
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFile(new Uri("http://builds.mullak99.co.uk/MathsQuestionGenerator/updater/latest"), "updater.pack");
-                    ZipFile.ExtractToDirectory("updater.pack", Directory.GetCurrentDirectory() + "..");
-                    File.Delete("updater.pack");
+                    webClient.DownloadFile(new Uri("http://builds.mullak99.co.uk/MathsQuestionGenerator/updater/latest"), Path.Combine(installDir, "updater.pack"));
+                    ZipFile.ExtractToDirectory(Path.Combine(installDir, "updater.pack"), Directory.GetCurrentDirectory() + "..");
+                    File.Delete(Path.Combine(installDir, "updater.pack"));
                     if (doCleanUpdate)
-                        Process.Start(Path.Combine("MQGUpdater.exe" + " -c"));
+                    {
+                        Process p = new Process();
+                        p.StartInfo.FileName = Path.Combine(installDir, "MQGUpdater.exe");
+                        p.StartInfo.Arguments = "-c";
+                        p.StartInfo.UseShellExecute = false;
+                        p.StartInfo.CreateNoWindow = true;
+                        p.StartInfo.RedirectStandardOutput = true;
+                        p.StartInfo.Verb = "runas";
+                        p.Start();
+                    }
                     else
-                        Process.Start("MQGUpdater.exe");
+                        Process.Start(Path.Combine(installDir, "MQGUpdater.exe"));
                     Environment.Exit(0);
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    if (MessageBox.Show("The MQG Update application is still open.\nPlease close MQG Update.\n\nDo you want to retry?", "Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        selfUpdate();
+                    if (MessageBox.Show("You are not running MQG as an admin, by doing this you cannot update the application in admin protected directories.\n\nDo you want to launch as admin?", "Notice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        runAsAdmin();
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.ToString(), "Error");
-                    File.Delete("MQGUpdate.exe");
-                    File.Delete("updater.pack");
+                    if (File.Exists(Path.Combine(installDir, "MQGUpdater.exe")))
+                        File.Delete(Path.Combine(installDir, "MQGUpdater.exe"));
+                    if (File.Exists(Path.Combine(installDir, "updater.pack")))
+                        File.Delete(Path.Combine(installDir, "updater.pack"));
                 }
             else
             {
-                File.Delete("updater.pack");
+                File.Delete(Path.Combine(installDir, "updater.pack"));
             }
         }
 
@@ -279,6 +295,36 @@ namespace MathsQuestionGenerator
         private void downloadUpdate_Click(object sender, EventArgs e)
         {
             selfUpdate(Program.doCleanUpdates());
+        }
+
+        internal static bool IsRunAsAdmin()
+        {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        private static void runAsAdmin()
+        {
+            if (!IsRunAsAdmin())
+            {
+                ProcessStartInfo proc = new ProcessStartInfo();
+                proc.UseShellExecute = true;
+                proc.WorkingDirectory = Environment.CurrentDirectory;
+                proc.FileName = Application.ExecutablePath;
+                proc.Verb = "runas";
+
+                try
+                {
+                    Process.Start(proc);
+                }
+                catch
+                {
+                    return;
+                }
+
+                Environment.Exit(0);
+            }
         }
     }
 }
