@@ -152,4 +152,4 @@ Launch Parameters can be used to launch the program with tweaked settings or fea
 
 |---| 1.0.4.3 |---|
 
-- Fixes updating application when in an admin-protected directory
+- Fixed updating application when in an admin-protected directory
