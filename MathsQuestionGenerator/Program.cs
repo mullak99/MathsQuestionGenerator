@@ -26,11 +26,11 @@ namespace MathsQuestionGenerator
         [STAThread]
         static void Main(string[] args)
         {
-
             if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Config\launchParams.cfg")))
                 args = readLaunchParams();
-            else if (File.Exists(@"Config\launchParams.cfg"))
+            if (File.Exists(@"Config\launchParams.cfg"))
                 args = readLaunchParams(true);
+
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -83,7 +83,7 @@ namespace MathsQuestionGenerator
         {
             string dir;
             if (local)
-                dir = @"Config\launchParams.cfg";
+                dir = Path.Combine(Directory.GetCurrentDirectory(), @"Config\launchParams.cfg");
             else
                 dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Config\launchParams.cfg");
 

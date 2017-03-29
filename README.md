@@ -153,3 +153,7 @@ Launch Parameters can be used to launch the program with tweaked settings or fea
 |---| 1.0.4.3 |---|
 
 - Fixed updating application when in an admin-protected directory
+
+|---| 1.0.4.4 |---|
+
+- Fixed updating application without the 'Documents/mullak99/Maths Question Generator' folder.

@@ -231,9 +231,7 @@ namespace MathsQuestionGenerator
         }
         public static void selfUpdate(bool doCleanUpdate = false)
         {
-            TextReader tr = new StreamReader(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Config\installProperties.cfg"));
-            string installDir = tr.ReadLine();
-            tr.Close();
+            string installDir = Directory.GetCurrentDirectory();
 
             if (checkServerConnection())
                 try
