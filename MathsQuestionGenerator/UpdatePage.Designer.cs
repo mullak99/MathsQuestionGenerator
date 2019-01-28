@@ -117,7 +117,7 @@
             // 
             this.updateCheck.BackColor = System.Drawing.Color.Lime;
             this.updateCheck.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.updateCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateCheck.ForeColor = System.Drawing.Color.Black;
             this.updateCheck.Location = new System.Drawing.Point(5, 176);
             this.updateCheck.Name = "updateCheck";
@@ -131,7 +131,7 @@
             // 
             this.downloadUpdate.BackColor = System.Drawing.Color.Yellow;
             this.downloadUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.downloadUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downloadUpdate.ForeColor = System.Drawing.Color.Black;
             this.downloadUpdate.Location = new System.Drawing.Point(140, 176);
             this.downloadUpdate.Name = "downloadUpdate";

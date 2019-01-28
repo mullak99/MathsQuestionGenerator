@@ -6,8 +6,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
+using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,6 +21,7 @@ namespace MathsQuestionGenerator
         DebugConsole console = new DebugConsole(); //Calls the 'DebugConsole' class and defines it as 'console' for later use.
         AboutPage about = new AboutPage(); //Calls the 'AboutPage' class and defines it as 'about' for later use.
         UpdatePage update = new UpdatePage(); //Calls the 'UpdatePage' class and defines it as 'update' for later use.
+        ConfigPage config = new ConfigPage(); //Calls the 'ConfigPage' class and defines it as 'config' for later use.
         Statistics stats = new Statistics(); //Calls the 'Statistics' class and defines it as 'stats' for later use.
         private float[,] EquationNumbers = new float[4, 4]; //Creates a float array of 4*4, this is used to store the randomised numbers that will be used within the equations as well as the symbol and answer for the equations.
         private int globalDifficulty = 10; //Creates the integer for the difficulty of the equations generated, this is set to '10' (Easy) by default and can be changed within the game.
@@ -34,7 +38,7 @@ namespace MathsQuestionGenerator
             InitializeComponent();
             startSplash();
         }
-
+        //Sets the MainBoard to display the Start Splash Screen.
         private void startSplash()
         {
             onStartSplash = true;
@@ -241,23 +245,48 @@ namespace MathsQuestionGenerator
         //Checks if certain parameters are enabled
         private void doParamChecks()
         {
-            
+            if (Program.isFullInstall())
+            {
+                console.writeToConsole("Program is installed as a Full Install. This mode is in BETA!", 1);
+            }
             if (Program.isOfflineMode())
             {
-                console.writeToConsole("Launch Parameter 'offlineMode' has been used.", 1);
+                console.writeToConsole("Program is using Forced Offline Mode!", 1);
                 offlineModeToolStripMenuItem.Checked = true;
             }
             if (Program.isEasterEgg() && update.checkIfOnline())
             {
-                console.writeToConsole("Launch Parameter 'lord' has been used. PRAISE GABEN!", 1);
-                pictureBox.ImageLocation = "http://gaben.mullak99.co.uk/horizontal/random.php";
+                console.writeToConsole("Program has been launched with the 'Lord' Easter Egg enabled! PRAISE GABEN!", 1);
+
+                WebClient wc = new WebClient();
+                byte[] bytes = wc.DownloadData("http://gaben.mullak99.co.uk/horizontal/random.php");
+                MemoryStream ms = new MemoryStream(bytes);
+
+                if (ms.Capacity > 0)
+                {
+                    this.BackgroundImageLayout = ImageLayout.Stretch;
+                    this.BackgroundImage = Image.FromStream(ms);
+
+                    Thread lordThread = new Thread(delegate() { Utils.downloadAndPlayEasterEgg(); });
+                    lordThread.Start();
+                }
             }
             if (Program.isDevMode())
             {
                 developerToolStripMenuItem.Visible = true;
-                console.writeToConsole("Launch Parameter 'developerMode' has been used. Developer Mode has been enabled!", 1);
+                console.writeToConsole("Program has been launched with Developer Mode!", 1);
+            }
+            if (Program.isLegacyMode())
+            {
+                developerToolStripMenuItem.Visible = true;
+                console.writeToConsole("Program has been launched in Legacy Mode! Certain features will not be accessible!", 1);
+            }
+            if (Program.isLegacyConfigPersistant())
+            {
+                console.writeToConsole("Program has been launched with Legacy Config Persistance! The old 'launchParams.cfg' will not be deleted, but will not have priority.", 1);
             }
         }
+
         //Manually override the timer tick rate/
         private void setTickRate(int ms)
         {
@@ -781,7 +810,7 @@ namespace MathsQuestionGenerator
             if(developerToolStripMenuItem.Visible)
                 console.Show();
         }
-        //Is called whenever the 'About' menu item is clicked, this will launch the about form.
+        //Is called whenever the 'About' menu item is clicked, this will launch the about/help form.
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             about.Show();
@@ -790,6 +819,11 @@ namespace MathsQuestionGenerator
         private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             update.Show();
+        }
+        //Is called whenever the '?' button is clicked, this will launch the about/help form.
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+            aboutToolStripMenuItem_Click(sender, e);
         }
         //Is called whenever the difficulty is changed whenever the developer mode is enabled, it ensures the difficulty is applied to the game.
         private void difficulty_TextChanged(object sender, EventArgs e)
@@ -1209,11 +1243,24 @@ namespace MathsQuestionGenerator
             else
                 console.writeToConsole("Version Spoofer: Server Error Disabled!", 1);
         }
-
+        //Exports Statistics to a file.
         private void statsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             stats.exportStats(correctSession, maxSession, avgTimeTaken, globalDifficulty);
-
+        }
+        //Opens the Settings Page. Displays a warning if 'Legacy' mode is being used.
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Program.isLegacyMode())
+                config.Show();
+            else
+                MessageBox.Show("You are using Legacy Mode.\n\nPlease remove the '--legacy' or '-l' launch parameter to access this!", "Legacy Mode", MessageBoxButtons.OK);
+        }
+        //Detect Key Presses.
+        private void MainBoard_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                helpButton_Click(sender, e);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MathsQuestionGenerator
     {
         private bool logWrites = true;
         private bool loggedDevMode = false;
-        private string devModeMessage = "Launch Parameter 'developerMode' has been used.Developer Mode has been enabled!";
+        private string devModeMessage = "Program has been launched with Developer Mode!";
 
         public DebugConsole()
         {
@@ -64,18 +64,17 @@ namespace MathsQuestionGenerator
             string logLocation = "";
 
             if (Program.isFullInstall())
-            {
-                logLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Logs");
-                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"mullak99\Maths Question Generator\Logs"));
-            }
+                logLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "mullak99", "Maths Question Generator", "Logs");
             else
-            {
-                logLocation = @"\Logs";
-                Directory.CreateDirectory("Logs");
-            }
-                
+                logLocation = "Logs";
 
-            File.WriteAllText(Path.Combine(logLocation, DateTime.Today.ToString("dd-MM-yy") + "-" + DateTime.Now.ToString("hh-mm-ss") + "-" + DateTime.Now.ToString("tt") + "-MQG-v" + Application.ProductVersion + ".log"), console.Text);
+            if (!Directory.Exists(logLocation)) Directory.CreateDirectory(logLocation);
+
+            string logFileName = Path.Combine(logLocation, (DateTime.Today.ToString("dd-MM-yy") + "-" + DateTime.Now.ToString("hh-mm-ss") + "-" + DateTime.Now.ToString("tt") + "-MQG-v" + Application.ProductVersion + ".log"));
+            File.WriteAllText(logFileName, console.Text);
+
+            writeToConsole("Exported Log: " + logFileName, 1);
+
         }
         //Moves the selection to the end of the textbox and scrolls to the selection.
         public void scroll()

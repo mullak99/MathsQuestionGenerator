@@ -76,7 +76,7 @@ namespace MathsQuestionGenerator
                 isOnline = true;
                 downloadUpdate.Visible = true;
 
-                if(!updateIgnored)
+                if (!updateIgnored)
                 {
                     if (MessageBox.Show("A new version is availible!\n\nDo you want to update to '" + latestVer.Text + "'?", "Update", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         downloadUpdate_Click(null, null);
@@ -162,7 +162,7 @@ namespace MathsQuestionGenerator
                     else
                         return utf.GetString(html);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return "0.0.0.0";
                 }
@@ -227,7 +227,9 @@ namespace MathsQuestionGenerator
         //Manually checks for an update with a button press.
         private void updateCheck_Click(object sender, EventArgs e)
         {
+            updateCheck.Enabled = false;
             checkForUpdate();
+            updateCheck.Enabled = true;
         }
         public static void selfUpdate(bool doCleanUpdate = false)
         {
@@ -246,7 +248,8 @@ namespace MathsQuestionGenerator
                     {
                         Process p = new Process();
                         p.StartInfo.FileName = Path.Combine(installDir, "MQGUpdater.exe");
-                        p.StartInfo.Arguments = "-c";
+                        if (Program.isFullInstall()) p.StartInfo.Arguments = "-c -f";
+                        else p.StartInfo.Arguments = "-c";
                         p.StartInfo.UseShellExecute = false;
                         p.StartInfo.CreateNoWindow = true;
                         p.StartInfo.RedirectStandardOutput = true;
@@ -254,7 +257,16 @@ namespace MathsQuestionGenerator
                         p.Start();
                     }
                     else
-                        Process.Start(Path.Combine(installDir, "MQGUpdater.exe"));
+                    {
+                        Process p = new Process();
+                        p.StartInfo.FileName = Path.Combine(installDir, "MQGUpdater.exe");
+                        if (Program.isFullInstall()) p.StartInfo.Arguments = "-f";
+                        p.StartInfo.UseShellExecute = false;
+                        p.StartInfo.CreateNoWindow = true;
+                        p.StartInfo.RedirectStandardOutput = true;
+                        p.StartInfo.Verb = "runas";
+                        p.Start();
+                    }
                     Environment.Exit(0);
                 }
                 catch (UnauthorizedAccessException)

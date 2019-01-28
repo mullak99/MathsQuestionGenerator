@@ -81,6 +81,7 @@
             this.crashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.difficultiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.massAnswerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submitButton = new System.Windows.Forms.Button();
             this.questionBox2 = new System.Windows.Forms.GroupBox();
             this.answer2 = new System.Windows.Forms.Label();
@@ -118,15 +119,14 @@
             this.mediumStartSplash = new System.Windows.Forms.RadioButton();
             this.hardStartSplash = new System.Windows.Forms.RadioButton();
             this.extremeStartSplash = new System.Windows.Forms.RadioButton();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.statsBox = new System.Windows.Forms.GroupBox();
             this.averageTimeLabel = new System.Windows.Forms.Label();
+            this.helpButton = new System.Windows.Forms.Button();
             this.questionBox1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.questionBox2.SuspendLayout();
             this.questionBox3.SuspendLayout();
             this.questionBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.statsBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -211,7 +211,8 @@
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.developerToolStripMenuItem});
+            this.developerToolStripMenuItem,
+            this.settingsToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(613, 24);
@@ -296,7 +297,7 @@
             // 
             this.statsToolStripMenuItem.Name = "statsToolStripMenuItem";
             this.statsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.statsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.statsToolStripMenuItem.Text = "Stats";
             this.statsToolStripMenuItem.Click += new System.EventHandler(this.statsToolStripMenuItem_Click);
             // 
@@ -631,6 +632,13 @@
             this.massAnswerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.massAnswerToolStripMenuItem.Text = "Mass Answer";
             this.massAnswerToolStripMenuItem.Click += new System.EventHandler(this.massAnswerToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // submitButton
             // 
@@ -992,7 +1000,7 @@
             this.timeLeft.ForeColor = System.Drawing.Color.White;
             this.timeLeft.Location = new System.Drawing.Point(148, 25);
             this.timeLeft.Name = "timeLeft";
-            this.timeLeft.Size = new System.Drawing.Size(452, 31);
+            this.timeLeft.Size = new System.Drawing.Size(437, 31);
             this.timeLeft.TabIndex = 17;
             this.timeLeft.Text = "00:00:00";
             this.timeLeft.Visible = false;
@@ -1083,15 +1091,6 @@
             this.extremeStartSplash.UseVisualStyleBackColor = false;
             this.extremeStartSplash.Click += new System.EventHandler(this.extremeStartSplash_Checked);
             // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(0, 25);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(613, 398);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox.TabIndex = 24;
-            this.pictureBox.TabStop = false;
-            // 
             // statsBox
             // 
             this.statsBox.BackColor = System.Drawing.Color.Transparent;
@@ -1114,12 +1113,28 @@
             this.averageTimeLabel.Text = "Average Time: ? second(s)";
             this.averageTimeLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // helpButton
+            // 
+            this.helpButton.BackColor = System.Drawing.Color.Cyan;
+            this.helpButton.FlatAppearance.BorderSize = 0;
+            this.helpButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.helpButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpButton.Location = new System.Drawing.Point(591, 27);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(20, 20);
+            this.helpButton.TabIndex = 26;
+            this.helpButton.TabStop = false;
+            this.helpButton.Text = "?";
+            this.helpButton.UseVisualStyleBackColor = false;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            // 
             // MainBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(613, 425);
+            this.Controls.Add(this.helpButton);
             this.Controls.Add(this.statsBox);
             this.Controls.Add(this.questionBox3);
             this.Controls.Add(this.extremeStartSplash);
@@ -1141,7 +1156,6 @@
             this.Controls.Add(this.questionBox1);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.infoText);
-            this.Controls.Add(this.pictureBox);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1149,6 +1163,7 @@
             this.MaximizeBox = false;
             this.Name = "MainBoard";
             this.Text = "Maths Question Generator";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainBoard_KeyDown);
             this.questionBox1.ResumeLayout(false);
             this.questionBox1.PerformLayout();
             this.menuStrip.ResumeLayout(false);
@@ -1159,7 +1174,6 @@
             this.questionBox3.PerformLayout();
             this.questionBox4.ResumeLayout(false);
             this.questionBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.statsBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1249,7 +1263,6 @@
         private System.Windows.Forms.ToolStripMenuItem v1000ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem futureVersionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverErrorToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ToolStripMenuItem forceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forceResetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forceStartSplashToolStripMenuItem;
@@ -1259,6 +1272,8 @@
         private System.Windows.Forms.ToolStripMenuItem statsToolStripMenuItem;
         private System.Windows.Forms.GroupBox statsBox;
         private System.Windows.Forms.Label averageTimeLabel;
+        private System.Windows.Forms.Button helpButton;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }
 
